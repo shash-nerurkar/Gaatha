@@ -13,7 +13,7 @@ public class PlayerFight : MonoBehaviour
 
     [Header("Health")]
     [SerializeField] private Player player;
-    int health = 100;
+    // int health = 100;
 
     public void TakeDamage(int damage) {
 

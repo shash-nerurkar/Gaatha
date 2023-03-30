@@ -18,17 +18,6 @@ public class InputManager : MonoBehaviour
         fpsPlayerInputActions = new PlayerInputActions();
         OnFootActions = fpsPlayerInputActions.OnFoot;
 
-        // PLAYER JUMP
-        OnFootActions.Jump.started += ctx => player.Movement.OnJump();
-
-        // PLAYER SPRINT
-        OnFootActions.Sprint.started += ctx => player.Movement.OnSprint(IsSprinting: true);
-        OnFootActions.Sprint.canceled += ctx => player.Movement.OnSprint(IsSprinting: false);
-
-        // PLAYER CROUCH
-        OnFootActions.Crouch.started += ctx => player.Movement.OnCrouch(IsCrouching: true);
-        OnFootActions.Crouch.canceled += ctx => player.Movement.OnCrouch(IsCrouching: false);
-
         // PLAYER WEAPON ATTACK
         OnFootActions.WeaponAttack.started += ctx => player.Fight.OnWeaponAttack(IsAttacking: true);
         OnFootActions.WeaponAttack.canceled += ctx => player.Fight.OnWeaponAttack(IsAttacking: false);
@@ -46,7 +35,8 @@ public class InputManager : MonoBehaviour
     }
 
     void FixedUpdate() {
-        player.Movement.OnMove(input: OnFootActions.Movement.ReadValue<Vector2>());
+        player.Movement.OnMove(moveValue: OnFootActions.Movement.ReadValue<Vector2>());
+        player.Movement.OnLook(lookDirection: OnFootActions.Look.ReadValue<Vector2>().normalized);
     }
 
     public void OnWeaponSwitchingDebounceTimerFinished() {
