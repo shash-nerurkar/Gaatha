@@ -50,16 +50,16 @@ public class PlayerMovement : MonoBehaviour
         transform.localScale = new Vector3(Mathf.Sign(lookAngle), 1, 1);
 
         lookAngle = Mathf.Abs(lookAngle);
-        if(lookAngle < 22.5f) {
+        if(lookAngle < Mathf.PI/8) {
             animator.SetInteger("lookState", 4);
         }
-        else if(lookAngle < 67.5f) {
+        else if(lookAngle < Mathf.PI*3/8) {
             animator.SetInteger("lookState", 3);
         }
-        else if(lookAngle < 112.5f) {
+        else if(lookAngle < Mathf.PI*5/8) {
             animator.SetInteger("lookState", 2);
         }
-        else if(lookAngle < 157.5f) {
+        else if(lookAngle < Mathf.PI*7/8) {
             animator.SetInteger("lookState", 1);
         }
         else {
@@ -70,7 +70,6 @@ public class PlayerMovement : MonoBehaviour
     void Update() {
         SetLookDir();   
 
-        print("velocity: " + velocity + " MoveSpeed: " + MoveSpeed);
         rb.velocity = velocity * MoveSpeed;
     }
 }
