@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerInteract : MonoBehaviour
 {
-    [SerializeField] private Camera cam;
-    [SerializeField] private Player player;
+    private Camera cam;
+    private Player player;
     private InputManager inputManager;
 
     // private float rayLength;

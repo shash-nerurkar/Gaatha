@@ -1,33 +1,42 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerFight : MonoBehaviour
 {
     void Awake() {
-        
-    }
-
-    void Update() {
-        
+        IsAttacking = false;
+        // playerWeapons = new List<IFPSWeapon>();
+        // foreach(IFPSWeapon weapon in gameObject.GetComponentsInChildren<IFPSWeapon>()) {
+        //     playerWeapons.Add(weapon);
+        // }
+        // currentWeaponIndex = 1;
+        // List<Sprite> weaponSprites = new();
+        // foreach(IFPSWeapon weapon in playerWeapons) {
+        //     player.UI.SetWeaponPanel(weaponSprite: weapon.Image, index: playerWeapons.IndexOf(weapon));
+        // }
+        // OnWeaponSwitch(switchDirection: -1);
     }
 
     [Header("Health")]
-    [SerializeField] private Player player;
+    private Player player;
     // int health = 100;
 
-    public void TakeDamage(int damage) {
+    public void TakeDamage( int damage ) {
 
     }
 
+
     [Header("Weapon")]
-    [SerializeField] private Camera cam;
+    private Camera cam;
 
     // public List<Weapon> playerWeapons { get; private set;}
     public int currentWeaponIndex { get; private set;}
-    [HideInInspector] public bool IsAttacking { get; set; }
+    public bool IsAttacking { get; private set; }
 
     public void OnWeaponAttack(bool IsAttacking) {
         this.IsAttacking = IsAttacking;
+    }
+    void Update() {
+        // playerWeapons[currentWeaponIndex].Attack(IsAttacking: IsAttacking);
     }
 
     public void OnWeaponReload() {
