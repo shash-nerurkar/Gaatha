@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private Player player;
     private Rigidbody2D rb;
     private Animator animator;
 
@@ -21,11 +22,10 @@ public class PlayerMovement : MonoBehaviour
         MoveSpeed = WalkSpeed;
 
         IsSprinting = false;
-
-        lookDirection = new Vector2(0, -1);
     }
 
     void Start() {
+        player = GetComponent<Player>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
     }
@@ -39,37 +39,7 @@ public class PlayerMovement : MonoBehaviour
         MoveSpeed = IsSprinting ? SprintSpeed : WalkSpeed;
     }
 
-    // FROM InputManager.cs
-    public void OnLook(Vector2 lookDirection) {
-        if(lookDirection != Vector2.zero) this.lookDirection = lookDirection;
-    }
-
-    private void SetLookDir() {
-        float lookAngle = Mathf.Atan2(lookDirection.x, lookDirection.y) * Mathf.Rad2Deg;
-
-        transform.localScale = new Vector3(Mathf.Sign(lookAngle), 1, 1);
-
-        lookAngle = Mathf.Abs(lookAngle);
-        if(lookAngle < Mathf.PI/8) {
-            animator.SetInteger("lookState", 4);
-        }
-        else if(lookAngle < Mathf.PI*3/8) {
-            animator.SetInteger("lookState", 3);
-        }
-        else if(lookAngle < Mathf.PI*5/8) {
-            animator.SetInteger("lookState", 2);
-        }
-        else if(lookAngle < Mathf.PI*7/8) {
-            animator.SetInteger("lookState", 1);
-        }
-        else {
-            animator.SetInteger("lookState", 0);
-        }
-    }
-
     void Update() {
-        SetLookDir();   
-
         rb.velocity = velocity * MoveSpeed;
     }
 }

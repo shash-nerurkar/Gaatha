@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - HUD
+  - Bullet Container
+  - Enemy Container
+  - Ingredient Container
+  - Floor Weapon Container
   layers:
   - Default
   - TransparentFX
@@ -13,11 +18,11 @@ TagManager:
   - UI
   - Player
   - Enemy
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Player weapon
+  - Enemy weapon
+  - Interactable
+  - Interaction detector
+  - Obstacle
   - 
   - 
   - 

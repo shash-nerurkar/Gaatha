@@ -24,36 +24,18 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Interact",
-                    "type": "Button",
-                    "id": "7eefc0ad-eef9-485f-b5d1-9c0782f5f843",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "WeaponAttack",
-                    "type": "Button",
-                    "id": "0cd3aacd-14a9-484f-98a8-1bc816afd872",
-                    "expectedControlType": "Button",
+                    "type": "Value",
+                    "id": "0ad0edbe-1ffc-4100-bddf-c86f0799c8a3",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
                     "name": "WeaponSwitch",
                     "type": "Button",
                     "id": "6fd49c4c-534d-4ad0-afb8-5112f60366f0",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "WeaponReload",
-                    "type": "Button",
-                    "id": "ce6ce931-1813-46eb-bbd1-69c0be68a3d5",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -69,28 +51,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Movement",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2818971b-f236-46d3-ae0a-3fe47b95710b",
-                    "path": "<Keyboard>/f",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "9e6de505-3c9f-4f5e-b812-c56e18ca5c73",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "WeaponAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -129,23 +89,23 @@
                 },
                 {
                     "name": "",
-                    "id": "76d79db1-9e64-48fd-b2e4-4ae97def2ad6",
-                    "path": "<Keyboard>/r",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "WeaponReload",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "afd93d6c-7224-4509-a4e7-7bfd9545e7d9",
                     "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "86cf370e-2bdf-4782-be88-e61372a4edcf",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "WeaponAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
