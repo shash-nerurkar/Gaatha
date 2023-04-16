@@ -15,7 +15,7 @@ public class EnemyPatrolState : EnemyBaseState
 
     public override void Perform() {
         value = enemy.MoveEnemy(dest, patrolSpeed);
-        if(enemy.PlayerProximityCheck())
+        if(enemy.SpotPlayer())
             stateMachine.ChangeState(stateMachine.followState);
         if(value)
             stateMachine.ChangeState(stateMachine.idleState);

@@ -6,11 +6,14 @@ public class EnemyStateMachine : MonoBehaviour
     public EnemyPatrolState patrolState;
     public EnemyIdleState idleState;
     public EnemyFollowState followState;
-
+    public EnemyFindState findState;
+    public EnemyShootState shootState;
     public void Initialize() {
         patrolState = new EnemyPatrolState();
         idleState = new EnemyIdleState();
         followState = new EnemyFollowState();
+        findState = new EnemyFindState();
+        shootState = new EnemyShootState();
         ChangeState(newState: patrolState);
     }
 

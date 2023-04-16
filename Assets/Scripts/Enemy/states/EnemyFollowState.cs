@@ -4,55 +4,37 @@ using UnityEngine;
 
 public class EnemyFollowState : EnemyBaseState
 {
-    Vector3[] path;
-    Vector3 currentWaypoint;
-    int targetIndex;
-    float followSpeed = 3f;
-    bool assignFirstPoint = true;
-    bool skip = false;
-
-    public override void Enter(){
+    RaycastHit2D hitInfo;
+    float followSpeed = 2f;
+    public override void Enter() {
         enemy.isFollowing = true;
-        PathRequestManager.RequestPath(enemy.transform.position, enemy.player.transform.position, OnPathFound);
-        assignFirstPoint = true;
     }
 
-    public override void Perform(){
-        if(path.Length>0){
-            if(assignFirstPoint){
-                currentWaypoint = path [0];
-                assignFirstPoint = false;
-            }
-            if (enemy.transform.position == currentWaypoint) {
-                targetIndex++;
-                if (targetIndex >= path.Length) {
-                    CheckAndRequest();
+        //As long as player is visible and in mediocre distance follow  if not go to find player state
+        //If distance is too large then switch to patrol
+        //If distance is short and player is visible then change state to shoot    
+    public override void Perform()
+    {
+        hitInfo = Physics2D.Raycast(enemy.transform.position, (enemy.player.transform.position - enemy.transform.position).normalized, enemy.greaterPlayerDistance, ~LayerMask.GetMask("Enemy"));        
+        if(hitInfo){
+            if(hitInfo.transform.name == "Player"){
+                if(enemy.DistToPlayer()<=enemy.lesserPlayerDistance){
+                    stateMachine.ChangeState(stateMachine.shootState);
                 }
-                if(targetIndex>1)
-                    currentWaypoint = path [targetIndex];
+                else{
+                    enemy.MoveEnemy(enemy.player.transform.position, followSpeed);
+                }
             }
-            enemy.MoveEnemy(currentWaypoint, followSpeed);
         }
-    }
+        else if(enemy.DistToPlayer()<=enemy.greaterPlayerDistance){
+            stateMachine.ChangeState(stateMachine.findState);
+        }
+        else if(enemy.DistToPlayer()>enemy.greaterPlayerDistance) {
+            stateMachine.ChangeState(stateMachine.patrolState);
+        }
 
-    public override void Exit(){
+    }
+    public override void Exit(){ 
         enemy.isFollowing = false;
     }
-    public void OnPathFound(Vector3[] newPath, bool pathSuccessful) {
-        if(pathSuccessful){
-            path = newPath;
-        }
-	}
-
-    void CheckAndRequest(){
-        skip = true;
-        if(!enemy.PlayerProximityCheck()){
-            if(!enemy.isFollowing)
-                stateMachine.ChangeState(stateMachine.patrolState);
-        }
-        targetIndex = 0;
-        path = new Vector3[0];
-        assignFirstPoint = true;
-        PathRequestManager.RequestPath(enemy.transform.position, enemy.player.transform.position, OnPathFound);
-    }    
 }

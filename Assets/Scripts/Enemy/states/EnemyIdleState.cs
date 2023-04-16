@@ -24,11 +24,11 @@ public class EnemyIdleState : EnemyBaseState
 
     async void DelayAndLook(){
         // 3 second delay
-        for(int i = 0; i < 6; i++){
-            if (enemy.PlayerProximityCheck()){
+        for(int i = 0; i < 10; i++){
+            if (enemy.SpotPlayer()){
                 stateMachine.ChangeState(stateMachine.followState);
             }
-            await Task.Delay(500);
+            await Task.Delay(100);
         }
         taskSuccess = true;
     }
