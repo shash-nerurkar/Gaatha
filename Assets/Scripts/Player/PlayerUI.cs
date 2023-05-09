@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class PlayerUI : MonoBehaviour
 {
@@ -7,12 +8,15 @@ public class PlayerUI : MonoBehaviour
     // private InteractablePromptPanel InteractablePromptPanel;
 
     // private ValueBar HealthBar;
+
+    // EVENTS
+    public static event Action<bool> InteractableToggleAction;
     
     void Start() {
         player = GetComponentInParent<Player>();
     }
 
-    public void ToggleWeaponPickupButtonInteractable( bool isInteractable ) {
-        player.HUD.weaponPickupInput.ToggleInteractable( isInteractable: isInteractable );
+    public void ToggleInteractableButton ( bool isInteractable ) {
+        InteractableToggleAction( isInteractable );
     }
 }

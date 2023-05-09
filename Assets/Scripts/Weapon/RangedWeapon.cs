@@ -10,9 +10,9 @@ public class RangedWeapon : MonoBehaviour, IWeapon
     private GameObject bulletContainer;
 
     // COMPONENTS
-    private WeaponPickable weaponPickable;
-    public WeaponPickable WeaponPickable {
-        get { return weaponPickable; }
+    private WeaponInteract weaponInteract;
+    public WeaponInteract WeaponInteract {
+        get { return weaponInteract; }
     }
     public Transform Transform {
         get { return transform; }
@@ -38,16 +38,20 @@ public class RangedWeapon : MonoBehaviour, IWeapon
         get { return isRecovering; }
     }
 
-    void Start() {
-        currentBurstFireCount = weaponData.BurstFireCount;
+    void Awake() {
         bulletContainer = GameObject.FindGameObjectWithTag(tag: Constants.BULLET_CONTAINER_TAG);
 
         recoverTimer = gameObject.AddComponent<Timer>();
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
 
-        weaponPickable = GetComponentInChildren<WeaponPickable>();
-        weaponPickable.Init();
+        weaponInteract = GetComponentInChildren<WeaponInteract>();
+    }
+
+    void Start() {
+        currentBurstFireCount = weaponData.BurstFireCount;
+        
+        weaponInteract.Init();
     }
 
     // IWeapon METHOD
@@ -90,13 +94,17 @@ public class RangedWeapon : MonoBehaviour, IWeapon
     }
    
     // IWeapon METHOD
-    public void OnAttackWindupStarted() {}
+    public void OnAttackWindupStarted() {
+        GameCamera.instance.Shake.ShakeCamera( intensity: 1, time: 0.3f );
+        SoundManager.instance.Play(Constants.WAX_CROSSBOW_SOUND);
+    }
     
     // IWeapon METHOD
     // ATTACK (SHOOT BULLET)
     public void OnAttackWindupFinished() {
         GameObject bulletInstance =  Instantiate(original: weaponData.Bullet, position: transform.TransformPoint(weaponData.BulletSpawnPosition), rotation: transform.rotation);
-        bulletInstance.transform.SetParent(bulletContainer.transform);
+        
+        bulletInstance.transform.SetParent(bulletContainer?.transform);
     }
 
     // IWeapon METHOD

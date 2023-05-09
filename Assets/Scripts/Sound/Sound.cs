@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Audio;
 
 [System.Serializable]
 public class Sound
@@ -15,6 +14,5 @@ public class Sound
   public float pitch = 1f;
 
   public bool isLoop;
-  public bool hasCooldown;
-  public AudioSource source;
+  [HideInInspector] public AudioSource source;
 }

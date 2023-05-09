@@ -6,10 +6,16 @@ public abstract class WeaponData : ScriptableObject
 {
     [Header("Info")]
     public new string name;
+    public WeaponId Id;
+
+    [Header("Weapon Crafting Component")]
+    public WeaponCraftingComponentData componentData;
 
     [Header("Attacking")]
     public WeaponAttackType AttackType;
     public int RecoveryTime;
+    public int Damage;
+    public int Knockback;
 
     [Header("Switching")]
     public Vector3 SwitchedInPosition;

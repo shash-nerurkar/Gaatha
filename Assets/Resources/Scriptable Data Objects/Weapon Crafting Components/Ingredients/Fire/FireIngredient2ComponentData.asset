@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf4ba6f2e688eb048a42cef28e60e3d4, type: 3}
+  m_Name: FireIngredient2ComponentData
+  m_EditorClassIdentifier: 
+  name: Vulcanised rubber
+  PanelSprite: {fileID: 21300000, guid: 4293304872e34f64a8b72443cd09b429, type: 3}
+  ComponentIcon: {fileID: 21300000, guid: 73ba663dcfebda24a940f318e93b5224, type: 3}
+  Id: 1
+  Ingredients:
+  - {fileID: 11400000, guid: 0b77488ea2b03094b8b35cebce2c59fc, type: 2}

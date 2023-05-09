@@ -10,8 +10,6 @@ public class RangedWeaponData : WeaponData
 
     [Header("Bullet")]
     public GameObject Bullet;
-    public int BulletDamage;
     public int BulletMoveSpeed;
-    public int BulletKnockback;
     public Vector3 BulletSpawnPosition;
 }

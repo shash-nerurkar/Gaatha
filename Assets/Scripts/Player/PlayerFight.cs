@@ -1,31 +1,51 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerFight : MonoBehaviour
 {
+    // EVENTS
+    public static event Action<Sprite, int> WeaponSpriteUpdateAction;
+
     void Awake() {
+        FloorWeaponContainer = GameObject.FindGameObjectWithTag(Constants.FLOOR_WEAPON_CONTAINER_TAG);
+
+        player = GetComponent<Player>();
+        WeaponPivot = GetComponentInChildren<WeaponPivot>();
+        WeaponQuiver = GetComponentInChildren<WeaponQuiver>();
+
         IsAttacking = false;
 
         // CREATING WEAPONS-IN-ARM LIST
         WeaponsInArm = new List<IWeapon>();
+        // print("WeaponsInArm: " + WeaponsInArm.Count);
         foreach(IWeapon weapon in gameObject.GetComponentsInChildren<IWeapon>()) {
             WeaponsInArm.Add(weapon);
         }
+        // print("WeaponsInArm: " + WeaponsInArm.Count);
+        // foreach(IWeapon weapon in WeaponsInArm) {
+        //     print(weapon.WeaponData.name);
+        // }
         CurrentWeaponIndex = 0;
+
+        WeaponSwitchInput.WeaponSwitchAction += OnWeaponSwitch;
+
+        WeaponInteract.WeaponInteractAction += OnWeaponPickup;
+
+        WeaponCraftingPanel.FetchWeaponInArmAction = SendWeaponsInArm;
+
+        InputManager.OnPlayerWeaponAttackAction += OnWeaponAttack;
     }
 
-    void Start() {
-        FloorWeaponContainer = GameObject.FindGameObjectWithTag(Constants.FLOOR_WEAPON_CONTAINER_TAG);
-        
-        player = GetComponent<Player>();
-        WeaponPivot = GetComponentInChildren<WeaponPivot>();
-
+    public void Init() {
         // CHOOSE 0TH WEAPON
         ChooseCurrentWeapon();
 
         // UPDATE HUD FOR WEAPONS
+        for(int i = 0; i < WeaponsInArm.Count; i++) {
+            WeaponSpriteUpdateAction?.Invoke( WeaponsInArm[i].Sprite.sprite, i );
+        }
     }
-
 
     // DAMAGE RELATED STUFF
     [Header("Health")]
@@ -36,10 +56,10 @@ public class PlayerFight : MonoBehaviour
 
 
     
-    // WEAPONS RELATED STUFF
-    // [Header("Weapons")]
+    // WEAPONS RELATED STUFF [Header("Weapons")]
     public GameObject FloorWeaponContainer { get; private set; }
     public WeaponPivot WeaponPivot { get; private set; }
+    public WeaponQuiver WeaponQuiver { get; private set; }
     public List<IWeapon> WeaponsInArm { get; private set;}
     public int CurrentWeaponIndex { get; private set; }
     public bool IsAttacking { get; private set; }
@@ -54,15 +74,9 @@ public class PlayerFight : MonoBehaviour
     }
 
     // FROM InputManager.cs
-    public void OnWeaponSwitch( ) {
+    public void OnWeaponSwitch() {
         // SWITCHING
         CurrentWeaponIndex = CurrentWeaponIndex == WeaponsInArm.Count - 1 ? 0 : CurrentWeaponIndex + 1;
-
-        // SWITCHING BASED ON SWITCH DIRECTION (FOR THE FUTURE)
-        // if(switchDirection == -1)
-        //     CurrentWeaponIndex = CurrentWeaponIndex == 0 ? WeaponsInArm.Count - 1 : CurrentWeaponIndex - 1;
-        // else 
-        //     CurrentWeaponIndex = CurrentWeaponIndex == WeaponsInArm.Count - 1 ? 0 : CurrentWeaponIndex + 1;
 
         // SET OBJECTS
         ChooseCurrentWeapon();
@@ -76,7 +90,7 @@ public class PlayerFight : MonoBehaviour
                 WeaponsInArm[i].SwitchIn();
             }
             else {
-                WeaponsInArm[i].Transform.SetParent( transform );
+                WeaponsInArm[i].Transform.SetParent( WeaponQuiver.transform );
                 WeaponsInArm[i].SwitchOut();
             }
         }
@@ -87,14 +101,12 @@ public class PlayerFight : MonoBehaviour
         player.Look.RotateSwitchedOutWeapons();
 
         // UPDATE HUD
+        WeaponSpriteUpdateAction?.Invoke( WeaponsInArm[CurrentWeaponIndex].Sprite.sprite, CurrentWeaponIndex );
     }
 
     public void OnWeaponPickup( IWeapon floorWeapon ) {
-        // CHECK IF WEAPON IS DROPPABLE
-        // if(!(WeaponsInArm[CurrentWeaponIndex]).CanDrop()) return;
-
         // DROP AND UPDATE WEAPON IN HAND
-        WeaponsInArm[CurrentWeaponIndex].Transform.SetParent( FloorWeaponContainer.transform );
+        WeaponsInArm[CurrentWeaponIndex].Transform.SetParent( FloorWeaponContainer?.transform );
         WeaponsInArm[CurrentWeaponIndex].Drop( floorWeaponTransform: floorWeapon.Transform );
 
         // PICK UP AND UPDATE FLOOR WEAPON 
@@ -108,5 +120,8 @@ public class PlayerFight : MonoBehaviour
         player.Look.SetWeaponsZIndex();
         
         // UPDATE HUD
+        WeaponSpriteUpdateAction?.Invoke( WeaponsInArm[CurrentWeaponIndex].Sprite.sprite, CurrentWeaponIndex );
     }
+
+    void SendWeaponsInArm(out List<IWeapon> weaponsInArm) => weaponsInArm = WeaponsInArm;
 }

@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public HUD HUD { get; private set; }
-
     public PlayerMovement Movement { get; private set; }
     public PlayerLook Look { get; private set; }
     public PlayerFight Fight { get; private set; }
@@ -16,10 +14,5 @@ public class Player : MonoBehaviour
         Movement = GetComponent<PlayerMovement>();
         UI = GetComponent<PlayerUI>();
         Look = GetComponent<PlayerLook>();
-    }
-
-    // FROM World.cs
-    public void Init(HUD HUD) {
-        this.HUD = HUD;
     }
 }

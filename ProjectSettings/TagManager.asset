@@ -9,6 +9,7 @@ TagManager:
   - Enemy Container
   - Ingredient Container
   - Floor Weapon Container
+  - Background Container
   layers:
   - Default
   - TransparentFX
@@ -49,6 +50,15 @@ TagManager:
   - name: Floor
     uniqueID: 4283378467
     locked: 0
-  - name: Character
+  - name: Floor object
     uniqueID: 138721921
+    locked: 0
+  - name: Character
+    uniqueID: 599794235
+    locked: 0
+  - name: Foreground
+    uniqueID: 1824161977
+    locked: 0
+  - name: Camera
+    uniqueID: 2051640577
     locked: 0

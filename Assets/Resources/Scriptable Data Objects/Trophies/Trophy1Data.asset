@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a66e3a50d131d5140ba7f4f1f9a4262a, type: 3}
+  m_Name: Trophy1Data
+  m_EditorClassIdentifier: 
+  name: Trophy 1 Name
+  description: Trophy 1 Description
+  panelRewardAnimatorController: {fileID: 9100000, guid: e2ae0bb9ef216a6458ebf9e281f8afb7, type: 2}

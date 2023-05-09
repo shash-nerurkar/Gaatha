@@ -22,12 +22,12 @@ public class PlayerMovement : MonoBehaviour
         MoveSpeed = WalkSpeed;
 
         IsSprinting = false;
-    }
 
-    void Start() {
         player = GetComponent<Player>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
+        InputManager.OnPlayerMoveAction += OnMove;
     }
 
     // FROM InputManager.cs

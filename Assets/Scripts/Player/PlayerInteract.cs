@@ -13,39 +13,61 @@ public class PlayerInteract : MonoBehaviour
 
     void Start() {
         player = GetComponentInParent<Player>();
+
+        // Event from InteractInput.cs
+        InteractInput.InteractPressedAction += InteractWithInteractable;
     }
 
     void OnTriggerEnter2D(Collider2D collided) {
-        if(currentInteractables.Count > 0) return;
+        // if(currentInteractables.Count > 0) return;
 
         Interactable collidedInteractable = collided.GetComponent<Interactable>();
         if( collidedInteractable != null ) {
             currentInteractables.Add(collidedInteractable);
 
             // UPDATE HUD
-            player.UI.ToggleWeaponPickupButtonInteractable( isInteractable: true );
-            // player.UI.InteractablePromptPanel.UpdateText(interactable.onInteractableSeenMessage);
+            player.UI.ToggleInteractableButton( isInteractable: true );
         }
     }
 
     void OnTriggerExit2D(Collider2D collided) {
         Interactable collidedInteractable = collided.GetComponent<Interactable>();
 
-        if( currentInteractables.Contains( collidedInteractable ) ) {
+        if( currentInteractables.Contains( collidedInteractable ) )
             ClearInteractable(collidedInteractable);
 
-            // UPDATE HUD
-            // player.UI.InteractablePromptPanel.UpdateText(interactable.onInteractableSeenMessage);
-        }
-
-        if(currentInteractables.Count <= 0) {
-            // UPDATE HUD
-            player.UI.ToggleWeaponPickupButtonInteractable( isInteractable: false );
-        }
+        // UPDATE HUD
+        if(currentInteractables.Count <= 0)
+            player.UI.ToggleInteractableButton( isInteractable: false );
     }
     
-    // From HUD WeaponPickupInput.cs
-    public void PickUpWeapon() {
-        if(currentInteractables.Count > 0) currentInteractables[0].Interact();
+    public void InteractWithInteractable() {
+        if( currentInteractables.Count == 0 ) return;
+
+        List<Interactable> ingredientInteractables = new List<Interactable>();
+        List<Interactable> startGamePortals = new List<Interactable>();
+        List<Interactable> trophyInteractables = new List<Interactable>();
+        List<Interactable> weaponInteractables = new List<Interactable>();
+
+        foreach( Interactable interactable in currentInteractables ) {
+            if( interactable is IngredientInteract ) ingredientInteractables.Add(interactable);
+            else if( interactable is WeaponInteract ) weaponInteractables.Add(interactable);
+            else if( interactable is TrophyInteract ) trophyInteractables.Add(interactable);
+            else if( interactable is StartGamePortal ) startGamePortals.Add(interactable);
+        }
+
+        if( ingredientInteractables.Count > 0 ) {
+            foreach( Interactable interactable in ingredientInteractables ) 
+                interactable.Interact();
+        }
+        else if( weaponInteractables.Count > 0 ) {
+            weaponInteractables[0].Interact();
+        }
+        else if( trophyInteractables.Count > 0 ) {
+            trophyInteractables[0].Interact();
+        }
+        else if( startGamePortals.Count > 0 ) {
+            startGamePortals[0].Interact();
+        }
     }
 }

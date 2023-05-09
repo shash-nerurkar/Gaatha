@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf4ba6f2e688eb048a42cef28e60e3d4, type: 3}
+  m_Name: WaxSwordAndHammerComponentData
+  m_EditorClassIdentifier: 
+  name: Wax Sword and Hammer
+  PanelSprite: {fileID: 21300000, guid: ca4b7385f27b24743ae1fd3b296bb38a, type: 3}
+  ComponentIcon: {fileID: 21300000, guid: 52209f9f71a4ee74ca3a45871fa5b56c, type: 3}
+  Id: 13
+  Ingredients:
+  - {fileID: 11400000, guid: 1b9dc6a0847d9bf40b8813c12e8c1db2, type: 2}
+  - {fileID: 11400000, guid: 0b77488ea2b03094b8b35cebce2c59fc, type: 2}

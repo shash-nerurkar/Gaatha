@@ -11,9 +11,9 @@ public class MeleeWeapon : MonoBehaviour, IWeapon
     private Collider2D weaponCollider;
     
     // COMPONENTS
-    private WeaponPickable weaponPickable;
-    public WeaponPickable WeaponPickable {
-        get { return weaponPickable; }
+    private WeaponInteract weaponInteract;
+    public WeaponInteract WeaponInteract {
+        get { return weaponInteract; }
     }
     public Transform Transform {
         get { return transform; }
@@ -37,26 +37,33 @@ public class MeleeWeapon : MonoBehaviour, IWeapon
         get { return isRecovering; }
     }
 
-    void Start() {
+    void Awake() {
         recoverTimer = gameObject.AddComponent<Timer>();
         sprite = GetComponent<SpriteRenderer>();
         weaponCollider = GetComponent<Collider2D>();
         animator = GetComponent<Animator>();
 
-        weaponPickable = GetComponentInChildren<WeaponPickable>();
-        weaponPickable.Init();
+        weaponInteract = GetComponentInChildren<WeaponInteract>();
+    }
+
+    void Start() {
+        weaponInteract.Init();
     }
 
     // IWeapon METHOD
     // START ATTACKING ANIMATION, IF NOT RELOADING
     public void Attack( bool IsAttacking ) {
-        if(!isRecovering) animator.SetBool("isAttacking", IsAttacking);
+        if(!isRecovering) {
+            animator.SetBool("isAttacking", IsAttacking);
+        }
     }
 
     // IWeapon METHOD
     // DISABLE THE COLLIDER, SINCE HERE THE USER IS NOT ATTACKING
     public void OnAttackWindupStarted() {
         weaponCollider.enabled = false;
+        GameCamera.instance.Shake.ShakeCamera( intensity: 1, time: 0.3f );
+        SoundManager.instance.Play(Constants.WAX_SWORD_SOUND);
     }
     
     // IWeapon METHOD

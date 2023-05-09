@@ -9,9 +9,7 @@ public class Bullet : MonoBehaviour
 
     void Awake() {
         moveSpeed = 30;
-    }
 
-    void Start() {
         rb = GetComponent<Rigidbody2D>();
         cd = GetComponent<Collider2D>();
     }

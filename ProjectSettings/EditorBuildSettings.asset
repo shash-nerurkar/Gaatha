@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Loading.unity
+    guid: 44e4eadfe0768174984bf9e0c987d294
+  - enabled: 1
+    path: Assets/Scenes/Main Menu.unity
+    guid: 6f53aa5a69df8c548b8fab02d927737c
+  - enabled: 1
+    path: Assets/Scenes/Trophy room.unity
+    guid: ccfe75b836c0e17479da46bbf5038092
+  - enabled: 1
     path: Assets/Scenes/World.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}

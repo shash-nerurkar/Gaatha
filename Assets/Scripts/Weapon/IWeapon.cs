@@ -2,7 +2,7 @@ using UnityEngine;
 
 public interface IWeapon
 {
-    public WeaponPickable WeaponPickable { get; }
+    public WeaponInteract WeaponInteract { get; }
     public WeaponData WeaponData { get; }
     public Transform Transform { get; }
     public SpriteRenderer Sprite { get; }
@@ -48,8 +48,8 @@ public interface IWeapon
     }
 
     public void PickUp() {
-        // DISABLE WEAPON PICKABLE
-        WeaponPickable.gameObject.SetActive(false);
+        // DISABLE WEAPON INTERACTABLE
+        WeaponInteract.gameObject.SetActive(false);
 
         // ENABLE ANIMATIONS
         Animator.enabled = true;
@@ -58,13 +58,16 @@ public interface IWeapon
         Transform.localPosition = WeaponData.SwitchedInPosition;
         Transform.localRotation = Quaternion.Euler(WeaponData.SwitchedInRotation);
 
+        // Z-INDEX
+        Sprite.sortingLayerName = Constants.SORTING_LAYER_CHARACTER;
+
         // PLAY ANIMATION
         // animator.SetBool("IsInitializing", true);
     }
 
     public void Drop( Transform floorWeaponTransform ) {
         // ENABLE WEAPON PICKABLE
-        WeaponPickable.gameObject.SetActive(true);
+        WeaponInteract.gameObject.SetActive(true);
 
         // DISABLE ANIMATIONS
         Animator.enabled = false;
@@ -78,6 +81,6 @@ public interface IWeapon
         ));
 
         // Z-INDEX
-        Sprite.sortingOrder = -1;
+        Sprite.sortingLayerName = Constants.SORTING_LAYER_FLOOR_OBJECT;
     }
 }
