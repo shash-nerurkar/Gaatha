@@ -50,14 +50,12 @@ public class InputManager : MonoBehaviour
     }
 
     public void EnableOnFootActions() {
-        print("EnableOnFootActions");
         OnFootActions.Enable();
 
         InWeaponCraftingActions.Disable();
     }
 
     public void EnableInWeaponCraftingActions() {
-        print("EnableInWeaponCraftingActions");
         InWeaponCraftingActions.Enable();
 
         OnFootActions.Disable();

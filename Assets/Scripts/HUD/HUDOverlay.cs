@@ -29,7 +29,7 @@ public class HUDOverlay : MonoBehaviour
 
         m_PointerEventData = new PointerEventData(m_EventSystem);
 
-        DragDroppableUI.IsUIClickedAction += IsUIClickedOn;
+        DragDroppableUI.IsUIClickedAction += IsComponentCardClickedOn;
     }
 
     void Update() {
@@ -39,14 +39,19 @@ public class HUDOverlay : MonoBehaviour
             m_Raycaster.Raycast( m_PointerEventData, objectsClickedOn );
     }
 
-    void IsUIClickedOn( GameObject incGameObject, out bool isUIClickedOn ) {
-        foreach( RaycastResult obj in objectsClickedOn ) {
-            if( obj.gameObject == incGameObject ) {
-                isUIClickedOn = true;
-                return;
-            }
+    void IsComponentCardClickedOn( GameObject incGameObject, out bool isUIClickedOn ) {
+        if( objectsClickedOn.Count == 0 ) {
+            isUIClickedOn = false;
         }
+        else {
+            foreach( RaycastResult raycastResult in objectsClickedOn ) {
+                if( raycastResult.gameObject.GetComponent<WeaponCraftingComponentCard>() != null ) {
+                    isUIClickedOn = incGameObject == raycastResult.gameObject;
+                    return;
+                }
+            }
 
-        isUIClickedOn = false;
+            isUIClickedOn = false;
+        }
     } 
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class WeaponCraftingInput : MonoBehaviour, HUDElement
 {
@@ -34,14 +35,17 @@ public class WeaponCraftingInput : MonoBehaviour, HUDElement
     // COMPONENTS
     private Button button;
 
+    // EVENTS
+    public static event Action StartWeaponCraftingAction;
+
     void Awake() {
         rectTransform = GetComponent<RectTransform>();
         button = GetComponent<Button>();
     }
 
     void Start() {
-        button.onClick.AddListener(delegate { 
-            // START CRAFTING HERE
+        button.onClick.AddListener(delegate {
+            StartWeaponCraftingAction?.Invoke();
         });
     }
 }

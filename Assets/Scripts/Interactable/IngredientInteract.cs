@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class IngredientInteract : Interactable
 {
-    private Ingredient ingredient;
+    public Ingredient Ingredient { get; private set; }
     private BoxCollider2D cd;
     
     // EVENTS
@@ -11,10 +11,10 @@ public class IngredientInteract : Interactable
 
     void Awake() {
         cd = GetComponent<BoxCollider2D>();
-        ingredient = GetComponent<Ingredient>();
+        Ingredient = GetComponent<Ingredient>();
     }
 
     public override void Interact() {
-        InteractWithIngredientAction?.Invoke( ingredient );
+        InteractWithIngredientAction?.Invoke( Ingredient );
     }
 }

@@ -1,17 +1,23 @@
 using System.Collections;
 using UnityEngine;
+using DG.Tweening;
+using System;
 
 public class DragDroppableUI : MonoBehaviour 
 {
 	// COMPONENTS
+	private RectTransform rectTransform;
 	private Camera cam;
 	
 	// VARIABLES
-	private bool isDragging;
+	public bool IsDragging { get; private set; }
 	private Vector3 curScreenPos;
+	private Vector3 snapBackAnchoredPosition;
+	private Tweener snapBackTween;
 
     // FUNCS
     static public HUDOverlay.GetUIClickStatus IsUIClickedAction;
+	public event Action OnSnapBackDoneAction;
 
 	private Vector3 WorldPos {
 		get {
@@ -20,30 +26,35 @@ public class DragDroppableUI : MonoBehaviour
 		}
 	}
 
-	private bool isClickedOn {
+	public bool IsClickedOn {
 		get {
-			bool isClickedOn = false;
-            IsUIClickedAction?.Invoke( gameObject, out isClickedOn );
+			bool ClickedOn = false;
+            IsUIClickedAction?.Invoke( gameObject, out ClickedOn );
  
-            if( isClickedOn )
+            if( ClickedOn )
 				return true;
 			else
 				return false;
 		}
 	}
-	
+
+	public void SetSnapBackAnchoredPosition( Vector3 snapBackAnchoredPosition ) {
+		this.snapBackAnchoredPosition = snapBackAnchoredPosition;
+	}
+
 	private void Awake() {
+		rectTransform = GetComponent<RectTransform>();
 		cam = Camera.main;
 	}
 
 	public void OnClickPerformed() {
-		isDragging = true;
+		IsDragging = true;
 
-		if(isClickedOn)	StartCoroutine(Drag());
+		StartCoroutine(Drag());
 	}
 
 	public void OnClickCanceled() {
-		isDragging = false;
+		IsDragging = false;
 	}
 
 	public void OnScreenPositionPerformed( Vector3 position ) {
@@ -51,11 +62,20 @@ public class DragDroppableUI : MonoBehaviour
 	}
 
 	private IEnumerator Drag() {
+		snapBackTween?.Kill();
+
 		Vector3 offset = transform.position - WorldPos;
-		while( isDragging ) {
+		while( IsDragging ) {
 			transform.position = WorldPos + offset;
 
 			yield return null;
+		}
+
+		if( snapBackAnchoredPosition != null ) {
+			snapBackTween = rectTransform
+				.DOAnchorPos( endValue: snapBackAnchoredPosition, duration: 0.5f )
+				.SetEase( ease: Ease.OutExpo )
+				.OnComplete( () => OnSnapBackDoneAction?.Invoke() );
 		}
 	}
 }

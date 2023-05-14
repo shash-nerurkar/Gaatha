@@ -36,8 +36,8 @@ public class WeaponShootInput : MonoBehaviour, HUDElement
     private OnScreenStick shootJoystick;
     private Button shootJoystickButton;
     private CustomButtonEventHandler buttonHandler;
-    private PlayerInputActions fpsPlayerInputActions;
-    private PlayerInputActions.OnFootActions OnFootActions;
+    // private PlayerInputActions fpsPlayerInputActions;
+    // private PlayerInputActions.OnFootActions OnFootActions;
 
     // VARIABLES
     [HideInInspector] public bool IsShootPressed = false;
@@ -54,8 +54,9 @@ public class WeaponShootInput : MonoBehaviour, HUDElement
         buttonHandler.onPointerDown += onShootJoystickButtonPressed;
         buttonHandler.onPointerUp += onShootJoystickButtonReleased;
         
-        fpsPlayerInputActions = new PlayerInputActions();
-        OnFootActions = fpsPlayerInputActions.OnFoot;
+        // fpsPlayerInputActions = new PlayerInputActions();
+        // OnFootActions = fpsPlayerInputActions.OnFoot;
+        // OnFootActions.Enable();
     }
 
     void onShootJoystickButtonPressed() => IsShootPressed = true;
@@ -71,13 +72,5 @@ public class WeaponShootInput : MonoBehaviour, HUDElement
         // shootJoystick = 50;
 
         // shootJoystick = 100;
-    }
-
-    void OnEnable() {
-        OnFootActions.Enable();
-    }
-
-    void OnDisable() {
-        OnFootActions.Disable();
     }
 }

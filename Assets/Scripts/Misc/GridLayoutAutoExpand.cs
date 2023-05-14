@@ -4,35 +4,28 @@
  public class GridLayoutAutoExpand : MonoBehaviour
  {
     // COMPONENTS
+    private RectTransform rectTransform;
     private GridLayoutGroup gridLayout;
-    // [SerializeField] private Button button;
 
     // VARIABLES
     [SerializeField] private int amountPerColumn;
      
     void Awake() {
+        rectTransform = GetComponent<RectTransform>();
         gridLayout = GetComponent<GridLayoutGroup>();
-
-        // button.onClick.AddListener(delegate { 
-        //     RecalculateGridLayout();
-        // });
     }
          
     public void RecalculateGridLayout () {
-        int count = gridLayout.transform.childCount;
-
-        Vector2 scale = GetComponent<RectTransform>().sizeDelta;
-
+        int childCount = gridLayout.transform.childCount;
         Vector3 cellSize = gridLayout.cellSize;
         Vector3 spacing = gridLayout.spacing;
 
-        int amountPerRow = Mathf.CeilToInt( (float)count / (float)amountPerColumn );
+        Vector2 scale = rectTransform.sizeDelta;
 
-        float childWidth = ( scale.x - spacing.x * ( amountPerColumn - 1 ) ) / amountPerColumn;
-        float childHeight = ( scale.y - spacing.y * ( amountPerRow - 1 ) ) / amountPerRow;
+        int amountPerRow = Mathf.CeilToInt( (float)childCount / (float)amountPerColumn );
 
-        cellSize.x = childWidth;
-        cellSize.y = childHeight;
+        cellSize.x = ( scale.x - spacing.x * ( amountPerColumn - 1 ) ) / amountPerColumn;
+        cellSize.y = ( scale.y - spacing.y * ( amountPerRow - 1 ) ) / amountPerRow;
 
         gridLayout.cellSize = cellSize;
     }

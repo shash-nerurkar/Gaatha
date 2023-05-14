@@ -56,7 +56,7 @@ public class WeaponSwitchInput : MonoBehaviour, HUDElement
         button.onClick.AddListener(delegate {
             animator.SetInteger( "weaponNo", animator.GetInteger("weaponNo") == 1 ? 2 : 1 );
 
-            WeaponSwitchAction();
+            WeaponSwitchAction?.Invoke();
         });
     }
 

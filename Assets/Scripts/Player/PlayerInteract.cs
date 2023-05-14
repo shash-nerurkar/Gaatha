@@ -11,11 +11,13 @@ public class PlayerInteract : MonoBehaviour
         if( currentInteractables.Contains( interactable ) ) currentInteractables.Remove( interactable );
     }
 
-    void Start() {
+    void Awake() {
         player = GetComponentInParent<Player>();
 
         // Event from InteractInput.cs
         InteractInput.InteractPressedAction += InteractWithInteractable;
+
+        WeaponCraftingPanel.FetchIngredientsInRangeAction = SendInteractableIngredients;
     }
 
     void OnTriggerEnter2D(Collider2D collided) {
@@ -50,10 +52,10 @@ public class PlayerInteract : MonoBehaviour
         List<Interactable> weaponInteractables = new List<Interactable>();
 
         foreach( Interactable interactable in currentInteractables ) {
-            if( interactable is IngredientInteract ) ingredientInteractables.Add(interactable);
-            else if( interactable is WeaponInteract ) weaponInteractables.Add(interactable);
-            else if( interactable is TrophyInteract ) trophyInteractables.Add(interactable);
-            else if( interactable is StartGamePortal ) startGamePortals.Add(interactable);
+            if( interactable is IngredientInteract ) ingredientInteractables.Add( interactable );
+            else if( interactable is WeaponInteract ) weaponInteractables.Add( interactable );
+            else if( interactable is TrophyInteract ) trophyInteractables.Add( interactable );
+            else if( interactable is StartGamePortal ) startGamePortals.Add( interactable );
         }
 
         if( ingredientInteractables.Count > 0 ) {
@@ -68,6 +70,18 @@ public class PlayerInteract : MonoBehaviour
         }
         else if( startGamePortals.Count > 0 ) {
             startGamePortals[0].Interact();
+        }
+    }
+    
+    void SendInteractableIngredients(out List<Ingredient> ingredientsInRange) {
+        if( currentInteractables.Count == 0 ) {
+            ingredientsInRange = null;
+        }
+        else {
+            ingredientsInRange = new List<Ingredient>();
+            foreach( Interactable interactable in currentInteractables )
+                if( interactable is IngredientInteract ) 
+                    ingredientsInRange.Add( ( interactable as IngredientInteract ).Ingredient );
         }
     }
 }
