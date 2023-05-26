@@ -5,13 +5,11 @@ public class PauseInput : MonoBehaviour, HUDElement
     [SerializeField] private Vector3 showPosition;
     public Vector3 ShowPosition {
         get { return showPosition; }
-        set { showPosition = value; }
     }
     
     [SerializeField] private Vector3 hidePosition;
     public Vector3 HidePosition {
         get { return hidePosition; }
-        set { hidePosition = value; }
     }
     
     private HUD hUD;
@@ -22,7 +20,6 @@ public class PauseInput : MonoBehaviour, HUDElement
     private RectTransform rectTransform;
     public RectTransform RectTransform {
         get { return rectTransform; }
-        set { rectTransform = value; }
     }
 
     void Awake() {

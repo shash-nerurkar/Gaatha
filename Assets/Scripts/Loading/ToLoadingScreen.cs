@@ -3,8 +3,10 @@ using UnityEngine.SceneManagement;
 
 public class ToLoadingScreen : MonoBehaviour
 {
-    public void StartTransitionToLoading() {
+    public void StartTransitionToLoading( SceneBuildIndex SceneBuildIndexToLoad ) {
         ScreenTransition.OnTransitionDone += GoToLoadingScreen;
+
+        LoadingScreenManager.SceneBuildIndexToLoad = SceneBuildIndexToLoad;
 
         ScreenTransition.instance.FadeIn();
     }

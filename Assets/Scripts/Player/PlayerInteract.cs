@@ -14,10 +14,9 @@ public class PlayerInteract : MonoBehaviour
     void Awake() {
         player = GetComponentInParent<Player>();
 
-        // Event from InteractInput.cs
         InteractInput.InteractPressedAction += InteractWithInteractable;
 
-        WeaponCraftingPanel.FetchIngredientsInRangeAction = SendInteractableIngredients;
+        WeaponCraftingPanel.FetchComponentsInRangeAction += SendInteractableIngredients;
     }
 
     void OnTriggerEnter2D(Collider2D collided) {
@@ -58,30 +57,38 @@ public class PlayerInteract : MonoBehaviour
             else if( interactable is StartGamePortal ) startGamePortals.Add( interactable );
         }
 
-        if( ingredientInteractables.Count > 0 ) {
-            foreach( Interactable interactable in ingredientInteractables ) 
-                interactable.Interact();
-        }
-        else if( weaponInteractables.Count > 0 ) {
+        if( weaponInteractables.Count > 0 ) {
             weaponInteractables[0].Interact();
         }
         else if( trophyInteractables.Count > 0 ) {
             trophyInteractables[0].Interact();
+        }
+        else if( ingredientInteractables.Count > 0 ) {
+            foreach( Interactable interactable in ingredientInteractables ) 
+                interactable.Interact();
         }
         else if( startGamePortals.Count > 0 ) {
             startGamePortals[0].Interact();
         }
     }
     
-    void SendInteractableIngredients(out List<Ingredient> ingredientsInRange) {
-        if( currentInteractables.Count == 0 ) {
-            ingredientsInRange = null;
-        }
-        else {
-            ingredientsInRange = new List<Ingredient>();
-            foreach( Interactable interactable in currentInteractables )
+    void SendInteractableIngredients( out List<Ingredient> ingredientsInRange, out List<IWeapon> weaponsInRange ) {
+        ingredientsInRange = new List<Ingredient>();            
+        weaponsInRange = new List<IWeapon>();
+
+        if( currentInteractables.Count > 0 ) {
+            foreach( Interactable interactable in currentInteractables ) {
                 if( interactable is IngredientInteract ) 
                     ingredientsInRange.Add( ( interactable as IngredientInteract ).Ingredient );
+                else if( interactable is WeaponInteract ) 
+                    weaponsInRange.Add( ( interactable as WeaponInteract ).Weapon );
+            }
         }
+    }
+
+    void OnDestroy() {
+        InteractInput.InteractPressedAction -= InteractWithInteractable;
+
+        WeaponCraftingPanel.FetchComponentsInRangeAction -= SendInteractableIngredients;
     }
 }

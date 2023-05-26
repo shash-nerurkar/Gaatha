@@ -10,9 +10,6 @@ public class HUDOverlay : MonoBehaviour
     private EventSystem m_EventSystem;
     private RectTransform canvasRect;
 
-    // OVERLAY ELEMENTS
-    public WeaponCraftingPanel WeaponCraftingPanel { get; private set; }
-
     // VARIABLES
     PointerEventData m_PointerEventData;
     List<RaycastResult> objectsClickedOn;
@@ -24,7 +21,6 @@ public class HUDOverlay : MonoBehaviour
         m_Raycaster = GetComponent<GraphicRaycaster>();
         canvasRect = GetComponent<RectTransform>();
 
-        WeaponCraftingPanel = GetComponentInChildren<WeaponCraftingPanel>();
         m_EventSystem = FindObjectOfType<EventSystem>();
 
         m_PointerEventData = new PointerEventData(m_EventSystem);
@@ -53,5 +49,9 @@ public class HUDOverlay : MonoBehaviour
 
             isUIClickedOn = false;
         }
-    } 
+    }
+
+    void OnDestroy() {
+        DragDroppableUI.IsUIClickedAction -= IsComponentCardClickedOn;
+    }
 }

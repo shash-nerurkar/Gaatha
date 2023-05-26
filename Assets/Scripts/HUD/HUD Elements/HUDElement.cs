@@ -8,5 +8,6 @@ public interface HUDElement
     public Vector3 ShowPosition { get; }
     public Vector3 HidePosition { get; }
 
+    public void Init( HUD HUD );
     public void ToggleInteractable( bool isInteractable );
 }

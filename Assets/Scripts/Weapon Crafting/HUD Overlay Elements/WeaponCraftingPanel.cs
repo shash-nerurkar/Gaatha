@@ -13,8 +13,8 @@ public class WeaponCraftingPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI adhesiveAmountText;
     [SerializeField] private WeaponCraftingAvailableComponentsPanel availableComponents;
     [SerializeField] private Button craftButton;
-    [SerializeField] private GameObject currentComponents;
-    [SerializeField] private GameObject results;
+    [SerializeField] private WeaponCraftingCurrentComponentPanelsPanel currentComponents;
+    [SerializeField] private WeaponCraftingResultsPanel results;
     
     // VARIABLES
     private bool isPanelActive = false;
@@ -22,41 +22,48 @@ public class WeaponCraftingPanel : MonoBehaviour
     // ACTIONS
     public static event Action EnableWeaponCraftingActionsAction;
     public static event Action EnablePlayerOnFootActionsAction;
+    public static event Action<IWeapon> SetCraftedWeaponAsPrimaryAction;
 
     // FUNCS
     public delegate void GetWeaponsAction( out List<IWeapon> weaponsInArm );
     static public WeaponCraftingPanel.GetWeaponsAction FetchWeaponInArmAction;
-    public delegate void GetIngredientsAction( out List<Ingredient> ingredientsInRange );
-    static public WeaponCraftingPanel.GetIngredientsAction FetchIngredientsInRangeAction;
+    public delegate void GetIngredientsAction( out List<Ingredient> ingredientsInRange, out List<IWeapon> weaponsInRange );
+    static public WeaponCraftingPanel.GetIngredientsAction FetchComponentsInRangeAction;
+    static public WorldManager.GetAllWeaponsInGameDelegate GetAllGameWeaponsAction;
 
     void Awake() {
         WeaponCraftingInput.StartWeaponCraftingAction += OnInteractWithWeaponCraftingInput;
 
         IngredientInteract.InteractWithIngredientAction += OnInteractWithIngredient;
 
+        WeaponCraftingComponentCard.OnComponentSelectedAction += FindCraftingResult;
+
+        WeaponCraftingResultsPanel.CraftWeaponAction += CraftWeapon;
+
         // HIDE PANEL ON BACK BUTTON CLICK
         backButton.onClick.AddListener(delegate { 
-            togglePanelActive( toggleStatus: false );
+            TogglePanelActive( toggleStatus: false );
         });
     }
 
     void OnInteractWithWeaponCraftingInput() {
-        // GET INGREDIENTS IN RANGE
+        // GET INGREDIENTS AND WEAPONS IN RANGE
         List<Ingredient> ingredientsInRange = null;
-        FetchIngredientsInRangeAction?.Invoke( out ingredientsInRange );
+        List<IWeapon> weaponsInRange = null;
+        FetchComponentsInRangeAction?.Invoke( out ingredientsInRange, out weaponsInRange );
 
-        ActivatePanel( ingredientsInRange: ingredientsInRange );
+        ActivatePanel( ingredientsInRange: ingredientsInRange, weaponsInRange: weaponsInRange );
     }
 
     void OnInteractWithIngredient( Ingredient ingredient ) {
-        ActivatePanel( ingredientsInRange: new List<Ingredient>() { ingredient } );
+        ActivatePanel( ingredientsInRange: new List<Ingredient>() { ingredient }, weaponsInRange: null );
     }
 
-    async void ActivatePanel( List<Ingredient> ingredientsInRange ) {
+    void ActivatePanel( List<Ingredient> ingredientsInRange, List<IWeapon> weaponsInRange ) {
         // IF PANEL ISN'T SHOWN YET
         if( !isPanelActive ) {
             // SHOW PANEL
-            togglePanelActive( toggleStatus: true );
+            TogglePanelActive( toggleStatus: true );
 
             // GET WEAPONS IN ARM
             List<IWeapon> weaponsInArm = null;
@@ -69,53 +76,60 @@ public class WeaponCraftingPanel : MonoBehaviour
                     AddComponentCard( 
                         componentData: weapon.WeaponData.componentData, 
                         weapon: weapon,
+                        ingredient: null,
                         parentTransform: availableComponents.ElementsContainer.transform
                     );
         }
 
-        // ADD COMPONENT CARD FOR THIS INGREDIENT
+        // ADD COMPONENT CARD FOR INCOMING INGREDIENT(S)
         if( ingredientsInRange != null )
             foreach( Ingredient ingredient in ingredientsInRange )
                 AddComponentCard(
                     componentData: ingredient.IngredientData.componentData, 
                     weapon: null,
+                    ingredient: ingredient,
+                    parentTransform: availableComponents.ElementsContainer.transform
+                );
+
+        // ADD COMPONENT CARD FOR INCOMING INGREDIENT(S)
+        if( weaponsInRange != null )
+            foreach( IWeapon weapon in weaponsInRange )
+                AddComponentCard(
+                    componentData: weapon.WeaponData.componentData, 
+                    weapon: weapon,
+                    ingredient: null,
                     parentTransform: availableComponents.ElementsContainer.transform
                 );
 
         availableComponents.AdjustGrid();
-
-        await System.Threading.Tasks.Task.Delay( millisecondsDelay: Mathf.CeilToInt(Time.deltaTime*1000) );
-
-        // SET CARD DATA FOR ALL COMPONENT CARDS, AFTER GRID HAS BEEN ADJUSTED
-        foreach( WeaponCraftingComponentCard componentCard in availableComponents.GetComponentsInChildren<WeaponCraftingComponentCard>() ) {
-            componentCard.SetCardData();
-        }
     }
 
-    void AddComponentCard( WeaponCraftingComponentData componentData, IWeapon weapon, Transform parentTransform ) {
+    void AddComponentCard(
+        WeaponCraftingComponentData componentData,
+        IWeapon weapon,
+        Ingredient ingredient,
+        Transform parentTransform
+    ) {
         // INSTANTIATE AND ADD A COMPONENT CARD
         GameObject componentCardInstance =  Instantiate(
             original: weaponCraftingComponentCard, 
             position: Vector3.zero, 
-            rotation: Quaternion.identity
+            rotation: Quaternion.identity,
+            parent: parentTransform
         );
-        componentCardInstance.transform.SetParent( parentTransform );
-        componentCardInstance.transform.localScale = new Vector3( 1, 1, 1 );
+        WeaponCraftingComponentCard componentCardInstanceCard = componentCardInstance.GetComponent<WeaponCraftingComponentCard>();
 
-        // SET CARD COMPONENT-RELATED DATA
-        componentCardInstance.GetComponent<WeaponCraftingComponentCard>().SetComponentData(
-            componentData: componentData
-        );
+        // SET PARENT DATA
+        componentCardInstanceCard.SetParent( parentTransform: parentTransform );
 
-        // SET COMPONENT CARD WEAPON-RELATED DATA
-        componentCardInstance.GetComponent<WeaponCraftingComponentCard>().SetWeaponData(
-            weaponData: weapon != null 
-                ? weapon.WeaponData 
-                : null
-        );
+        // SET DATA
+        componentCardInstanceCard.SetData( componentData: componentData );
+
+        // SET COMPONENT TYPE DATA
+        componentCardInstanceCard.SetComponentTypeData( weapon: weapon, ingredient: ingredient );
     }
 
-    void togglePanelActive( bool toggleStatus ) {
+    void TogglePanelActive( bool toggleStatus ) {
         isPanelActive = toggleStatus;
 
         if( isPanelActive ) {
@@ -123,7 +137,12 @@ public class WeaponCraftingPanel : MonoBehaviour
         }
         else {
             EnablePlayerOnFootActionsAction?.Invoke();
+
+            currentComponents.ClearAllSelectedComponents();
+            
             availableComponents.ClearGrid();
+
+            results.ClearResults();
         }
 
         for( int index = 0; index < transform.childCount; index++ ) {
@@ -131,25 +150,56 @@ public class WeaponCraftingPanel : MonoBehaviour
         }
     }
 
-    void SetComponentAsCurrent( WeaponCraftingComponentCard componentCard, int index ) {
-        // IF CURRENT COMPONENT IS EMPTY, REMOVE CARD FROM AVAILABLE COMPONENTS
-        // ELSE, EXCHANGE THE CURRENT COMPONENT AND THE CARD COMPONENT
-        if( currentComponents.transform.GetChild( index ).childCount == 0 ) {
-            
-        }
-        else {
-
-        }
-
-        // ADD A COMPONENT CARD TO THE CURRENT COMPONENT AT GIVEN INDEX
-
-    }
-
     void FindCraftingResult() {
+        if( !currentComponents.CanCraft ) return;
+
+        results.ClearResults();
+
         // FIND RESULT
-        // CraftingResultFinder.FindCraftingResult
+        List<WeaponData> resultWeaponsDatas = WeaponCraftingResultFinder.GetCraftingResult( componentDatas: currentComponents.GetCurrentComponentDatas() );
 
         // SET RESULT SPRITE
-        // resultImage.sprite = 
+        results.SetResults( weaponDatas: resultWeaponsDatas );
+    }
+    
+    async void CraftWeapon( WeaponData weaponData, int craftingCost ) {
+        // FETCH ALL WEAPONS IN THE GAME FROM THE WORLD
+        List<IWeapon> allGameWeapons = null;
+        GetAllGameWeaponsAction?.Invoke( out allGameWeapons );
+        if( allGameWeapons == null ) return;
+
+        // GET THE WEAPON TO CRAFT
+        GameObject weaponObjectToCraft = null;
+        foreach( IWeapon weapon in allGameWeapons ) {
+            if( weapon.WeaponData.Id == weaponData.Id ) {
+                weaponObjectToCraft = weapon.GameObject;
+                break;
+            }
+        }
+        if( weaponObjectToCraft == null ) return;
+
+        // DESTROY THE BASE COMPONENTS
+        currentComponents.DeleteOriginalObjectsForSelectedComponents();
+
+        await System.Threading.Tasks.Task.Delay( millisecondsDelay: Mathf.CeilToInt(Time.deltaTime * 1000) );
+
+        // CREATE WEAPON TO CRAFT
+        GameObject craftedWeaponObject = Instantiate( original: weaponObjectToCraft, position: Vector3.zero, rotation: Quaternion.identity );
+        IWeapon craftedWeapon = craftedWeaponObject.GetComponent<IWeapon>();
+
+        SetCraftedWeaponAsPrimaryAction?.Invoke( craftedWeapon );
+
+        // CLOSE PANEL
+        TogglePanelActive( toggleStatus: false );
+    }
+
+    void OnDestroy() {
+        WeaponCraftingInput.StartWeaponCraftingAction -= OnInteractWithWeaponCraftingInput;
+
+        IngredientInteract.InteractWithIngredientAction -= OnInteractWithIngredient;
+
+        WeaponCraftingComponentCard.OnComponentSelectedAction -= FindCraftingResult;
+
+        WeaponCraftingResultsPanel.CraftWeaponAction -= CraftWeapon;
     }
 }

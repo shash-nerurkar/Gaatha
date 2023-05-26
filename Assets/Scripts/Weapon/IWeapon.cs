@@ -5,6 +5,7 @@ public interface IWeapon
     public WeaponInteract WeaponInteract { get; }
     public WeaponData WeaponData { get; }
     public Transform Transform { get; }
+    public GameObject GameObject { get; }
     public SpriteRenderer Sprite { get; }
     public Animator Animator { get; }
     public Timer RecoverTimer { get; }
@@ -65,7 +66,7 @@ public interface IWeapon
         // animator.SetBool("IsInitializing", true);
     }
 
-    public void Drop( Transform floorWeaponTransform ) {
+    public void Drop( Vector3 floorWeaponPosition, Quaternion floorWeaponRotation ) {
         // ENABLE WEAPON PICKABLE
         WeaponInteract.gameObject.SetActive(true);
 
@@ -73,10 +74,10 @@ public interface IWeapon
         Animator.enabled = false;
 
         // SET POSITION ACCORDING TO WEAPON DATA
-        Transform.localPosition = floorWeaponTransform.localPosition;
+        Transform.localPosition = floorWeaponPosition;
         Transform.localRotation = Quaternion.Euler(new Vector3( 
-            floorWeaponTransform.localRotation.eulerAngles.x, 
-            floorWeaponTransform.localRotation.eulerAngles.y, 
+            floorWeaponRotation.eulerAngles.x, 
+            floorWeaponRotation.eulerAngles.y, 
             Random.Range(-180, 180) 
         ));
 

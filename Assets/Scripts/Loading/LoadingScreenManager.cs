@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 
 public class LoadingScreenManager : MonoBehaviour
 {
+    public static SceneBuildIndex SceneBuildIndexToLoad;
+
     async void Start() {
         ScreenTransition.instance.FadeOut();
 
@@ -21,6 +23,6 @@ public class LoadingScreenManager : MonoBehaviour
     void GoToDestinationScreen() {
         ScreenTransition.OnTransitionDone -= GoToDestinationScreen;
         
-        SceneManager.LoadScene(sceneBuildIndex: (int)SceneBuildIndex.World);
+        SceneManager.LoadScene( sceneBuildIndex: (int)SceneBuildIndexToLoad );
     }
 }

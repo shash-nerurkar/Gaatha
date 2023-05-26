@@ -10,13 +10,13 @@ public class PlayerUI : MonoBehaviour
     // private ValueBar HealthBar;
 
     // EVENTS
-    public static event Action<bool> InteractableToggleAction;
+    public static event Action<bool> InteractInputToggleAction;
     
     void Start() {
         player = GetComponentInParent<Player>();
     }
 
     public void ToggleInteractableButton ( bool isInteractable ) {
-        InteractableToggleAction( isInteractable );
+        InteractInputToggleAction?.Invoke( isInteractable );
     }
 }

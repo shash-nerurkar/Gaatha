@@ -7,19 +7,16 @@ public class InteractInput : MonoBehaviour, HUDElement
     [SerializeField] private Vector3 showPosition;
     public Vector3 ShowPosition {
         get { return showPosition; }
-        set { showPosition = value; }
     }
     
     [SerializeField] private Vector3 hidePosition;
     public Vector3 HidePosition {
         get { return hidePosition; }
-        set { hidePosition = value; }
     }
     
     private RectTransform rectTransform;
     public RectTransform RectTransform {
         get { return rectTransform; }
-        set { rectTransform = value; }
     }
     
     private HUD hUD;
@@ -39,7 +36,7 @@ public class InteractInput : MonoBehaviour, HUDElement
     public static event Action InteractPressedAction;
 
     void Awake() {
-        PlayerUI.InteractableToggleAction += ToggleInteractable;
+        PlayerUI.InteractInputToggleAction += ToggleInteractable;
 
         rectTransform = GetComponent<RectTransform>();
         button = GetComponent<Button>();
@@ -49,5 +46,9 @@ public class InteractInput : MonoBehaviour, HUDElement
         button.onClick.AddListener(delegate { 
             InteractPressedAction();
         });
+    }
+
+    void OnDestroy() {
+        PlayerUI.InteractInputToggleAction -= ToggleInteractable;
     }
 }

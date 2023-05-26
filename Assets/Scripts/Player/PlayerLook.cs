@@ -105,4 +105,8 @@ public class PlayerLook : MonoBehaviour
             player.Fight.WeaponQuiver.SortingGroup.sortingOrder =  1;
         }
     }
+
+    void OnDestroy() {
+        InputManager.OnPlayerLookAction -= OnLook;
+    }
 }

@@ -4,7 +4,7 @@ using System;
 public class WeaponInteract : Interactable
 {
     private BoxCollider2D cd;
-    private IWeapon weapon;
+    public IWeapon Weapon { get; private set; }
 
     
     // EVENTS
@@ -12,7 +12,7 @@ public class WeaponInteract : Interactable
 
 
     void Awake() {
-        weapon = transform.GetComponentInParent<IWeapon>();
+        Weapon = transform.GetComponentInParent<IWeapon>();
 
         cd = GetComponent<BoxCollider2D>();
     }
@@ -21,12 +21,12 @@ public class WeaponInteract : Interactable
     public void Init() {
         // SET COLLIDER SIZE
         cd.size = new Vector3( 
-            weapon.Sprite.bounds.size.x / transform.lossyScale.x + 0.5f,
-            weapon.Sprite.bounds.size.y / transform.lossyScale.y + 0.5f 
+            Weapon.Sprite.bounds.size.x / transform.lossyScale.x + 0.5f,
+            Weapon.Sprite.bounds.size.y / transform.lossyScale.y + 0.5f 
         );
     }
 
     public override void Interact() {
-        WeaponInteractAction?.Invoke( weapon );
+        WeaponInteractAction?.Invoke( Weapon );
     }
 }

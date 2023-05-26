@@ -6,13 +6,13 @@ public class StartGamePortal : Interactable
     private BoxCollider2D cd;
     
     // EVENTS
-    public static event Action StartGameAction;
+    public static event Action<SceneBuildIndex> StartGameAction;
 
     void Awake() {
         cd = GetComponent<BoxCollider2D>();
     }
 
     public override void Interact() {
-        StartGameAction?.Invoke();
+        StartGameAction?.Invoke( SceneBuildIndex.World );
     }
 }

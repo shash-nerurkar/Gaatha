@@ -564,6 +564,8 @@ GameObject:
   - component: {fileID: 778205556529940285}
   - component: {fileID: 5911436232336405870}
   - component: {fileID: 1860565946}
+  - component: {fileID: 1300651089}
+  - component: {fileID: 1612161930619803259}
   - component: {fileID: 2881991545805163825}
   - component: {fileID: 6233062034431644799}
   m_Layer: 5
@@ -590,7 +592,6 @@ RectTransform:
   - {fileID: 601861316}
   - {fileID: 1172848767}
   - {fileID: 1330318480709634782}
-  - {fileID: 2112622516551494998}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -663,6 +664,52 @@ MonoBehaviour:
   m_ChildScaleWidth: 1
   m_ChildScaleHeight: 1
   m_ReverseArrangement: 0
+--- !u!114 &1300651089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778205556529940287}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: 240
+  m_PreferredHeight: -1
+  m_FlexibleWidth: -1
+  m_FlexibleHeight: -1
+  m_LayoutPriority: 1
+--- !u!61 &1612161930619803259
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 778205556529940287}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 120, y: -120}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 240, y: 240}
+  m_EdgeRadius: 0
 --- !u!114 &2881991545805163825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -675,6 +722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a4ec45f54016054da0127d3d29b8cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShouldSnapBack: 0
 --- !u!114 &6233062034431644799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -697,6 +745,7 @@ MonoBehaviour:
   weaponAttackSpeedLabel: {fileID: 6690487347662223904}
   weaponKnockbackLabel: {fileID: 3923867748892947946}
   onDragCard: {fileID: 3148409085213608752}
+  IsCardDraggable: 0
 --- !u!1 &1971174412696355961
 GameObject:
   m_ObjectHideFlags: 0
@@ -1723,37 +1772,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &7087736867650038275
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2112622516551494998}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2112622516551494998
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7087736867650038275}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 93.1897, y: -116.84601, z: -1.2750072}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 778205556529940286}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7942052546721122503
 GameObject:
   m_ObjectHideFlags: 0
@@ -2155,6 +2173,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2903435786575193225, guid: 5597931b3a8ddf2459450e2b31aed67f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6657023894386002343, guid: 5597931b3a8ddf2459450e2b31aed67f, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8443772594454200160, guid: 5597931b3a8ddf2459450e2b31aed67f, type: 3}

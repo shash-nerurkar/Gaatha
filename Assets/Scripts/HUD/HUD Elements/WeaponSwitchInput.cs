@@ -8,13 +8,11 @@ public class WeaponSwitchInput : MonoBehaviour, HUDElement
     [SerializeField] private Vector3 showPosition;
     public Vector3 ShowPosition {
         get { return showPosition; }
-        set { showPosition = value; }
     }
     
     [SerializeField] private Vector3 hidePosition;
     public Vector3 HidePosition {
         get { return hidePosition; }
-        set { hidePosition = value; }
     }
 
     private HUD hUD;
@@ -25,28 +23,41 @@ public class WeaponSwitchInput : MonoBehaviour, HUDElement
 
     public void Init( HUD HUD ) => this.HUD =  HUD;
 
-    public void ToggleInteractable( bool isInteractable ) {}
+    public void ToggleInteractable( bool isInteractable ) {
+        button.interactable = isInteractable;
+
+        foreach( Image weaponImage in weaponImages )
+            weaponImage.enabled = button.interactable;
+        
+        backgroundImage.color = button.interactable 
+            ? Color.white
+            : new Color( 0.78f, 0.78f, 0.78f, 0.5f );
+    }
 
     // COMPONENTS
     private Button button;
     private Animator animator;
+    private Image backgroundImage;
     private List<Image> weaponImages;
     private RectTransform rectTransform;
     public RectTransform RectTransform {
         get { return rectTransform; }
-        set { rectTransform = value; }
     }
 
     // EVENTS
     public static event Action WeaponSwitchAction;
 
     void Awake() {
+        PlayerFight.SwitchInputToggleAction += ToggleInteractable;
+
         PlayerFight.WeaponSpriteUpdateAction += SetWeaponSprite;
 
         rectTransform = GetComponent<RectTransform>();
         button = GetComponent<Button>();
         animator = GetComponent<Animator>();
         
+        backgroundImage = transform.GetChild(0).GetComponent<Image>();
+
         weaponImages = new List<Image>();
         weaponImages.Add( transform.GetChild(1).GetComponent<Image>() );
         weaponImages.Add( transform.GetChild(2).GetComponent<Image>() );
@@ -63,5 +74,11 @@ public class WeaponSwitchInput : MonoBehaviour, HUDElement
     // SET WEAPON IMAGE WIDGET SPRITE
     public void SetWeaponSprite(Sprite sprite, int index) {
         weaponImages[index].sprite = sprite;
+    }
+
+    void OnDestroy() {
+        PlayerFight.SwitchInputToggleAction -= ToggleInteractable;
+
+        PlayerFight.WeaponSpriteUpdateAction -= SetWeaponSprite;
     }
 }

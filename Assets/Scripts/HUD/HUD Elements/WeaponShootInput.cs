@@ -7,19 +7,16 @@ public class WeaponShootInput : MonoBehaviour, HUDElement
     [SerializeField] private Vector3 showPosition;
     public Vector3 ShowPosition {
         get { return showPosition; }
-        set { showPosition = value; }
     }
     
     [SerializeField] private Vector3 hidePosition;
     public Vector3 HidePosition {
         get { return hidePosition; }
-        set { hidePosition = value; }
     }
     
     private RectTransform rectTransform;
     public RectTransform RectTransform {
         get { return rectTransform; }
-        set { rectTransform = value; }
     }
     
     private HUD hUD;
@@ -63,7 +60,6 @@ public class WeaponShootInput : MonoBehaviour, HUDElement
     void onShootJoystickButtonReleased() => IsShootPressed = false;
 
     void FixedUpdate() {
-        // print(  );
         // if( OnFootActions.Look.ReadValue<Vector2>().magnitude < 0.1 ) {
         //     shoo
         // }

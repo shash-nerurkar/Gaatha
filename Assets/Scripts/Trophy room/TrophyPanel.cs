@@ -13,10 +13,8 @@ public class TrophyPanel : MonoBehaviour
     [SerializeField] private TextMeshProUGUI trophyDescription;
 
     void Awake() {
-        // Event from Trophy.cs
         Trophy.TrophyInteractAction += SetPanelData;
 
-        // Event from TrophyInteract.cs
         TrophyInteract.TrophyInteractAction += SetPanelData;
     }
 
@@ -41,5 +39,11 @@ public class TrophyPanel : MonoBehaviour
 
         trophyObject.GetComponent<Image>().sprite = trophy.TrophyObject.GetComponent<SpriteRenderer>().sprite;
         rewardObject.GetComponent<Animator>().runtimeAnimatorController = trophy.TrophyData.panelRewardAnimatorController;
+    }
+
+    void OnDestroy() {
+        Trophy.TrophyInteractAction -= SetPanelData;
+
+        TrophyInteract.TrophyInteractAction -= SetPanelData;
     }
 }

@@ -44,7 +44,6 @@ public class CustomButtonEventHandler : MonoBehaviour, IPointerDownHandler, IPoi
 
     public void OnPointerExit(PointerEventData eventData) {
         StopAllCoroutines();
-        // onPointerUp?.Invoke();
     }
 
     public void OnPointerEnter(PointerEventData eventData) {}

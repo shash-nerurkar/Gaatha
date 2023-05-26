@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:GroupBox style="flex-direction: row; justify-content: flex-start; flex-grow: 1; width: auto; align-items: flex-end;">
+        <ui:GroupBox name="TitleGroup" style="flex-grow: 0; align-items: flex-end; flex-wrap: wrap;">
+            <ui:Label text="Gatha" display-tooltip-when-elided="true" name="TitleLabel" style="justify-content: flex-start; align-items: stretch; -unity-text-align: lower-right; flex-grow: 0;" />
+            <ui:Label text="A gatha is written." display-tooltip-when-elided="true" name="SubtitleLabel" style="justify-content: flex-start; align-items: stretch; -unity-text-align: lower-right; flex-grow: 0;" />
+        </ui:GroupBox>
+        <ui:GroupBox name="ButtonsGroup" style="flex-grow: 0; align-items: flex-start;">
+            <ui:Button text="Button" display-tooltip-when-elided="true" />
+            <ui:Button text="Button" display-tooltip-when-elided="true" />
+            <ui:Button text="Button" display-tooltip-when-elided="true" />
+            <ui:Button text="Button" display-tooltip-when-elided="true" />
+        </ui:GroupBox>
+    </ui:GroupBox>
+</ui:UXML>

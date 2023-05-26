@@ -1,4 +1,5 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -8,21 +9,15 @@ public class PlayerMovement : MonoBehaviour
 
     // MOVEMENT
     private Vector2 velocity;
-    private float WalkSpeed;
-    private float SprintSpeed;
+    private float[] SpeedRange = { 3.0f, 6.0f };
+    public bool IsMoving { get; private set; }
+    Tweener startMoveTweener = null;
+    Tweener endMoveTweener = null;
     public float MoveSpeed { get; private set; }
-    // SPRINT
-    public bool IsSprinting { get; private set; }
     // LOOK
     private Vector2 lookDirection;
 
     void Awake() {
-        WalkSpeed = 3.0f;
-        SprintSpeed = 7.0f;
-        MoveSpeed = WalkSpeed;
-
-        IsSprinting = false;
-
         player = GetComponent<Player>();
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
@@ -32,15 +27,35 @@ public class PlayerMovement : MonoBehaviour
 
     // FROM InputManager.cs
     public void OnMove(Vector2 moveValue) {
-        velocity = moveValue.normalized;
+        // IF MOVEMENT STATUS HAS CHANGED  
+        if( moveValue.Equals( Vector2.zero ) ) {
+            IsMoving = false;
 
-        this.IsSprinting = velocity == moveValue && velocity != Vector2.zero;
+            if( endMoveTweener == null ) {
+                startMoveTweener.Kill();
+                startMoveTweener = null;
+                endMoveTweener = DOVirtual.Float( MoveSpeed, 0, duration: 0.25f, v => MoveSpeed = v );
+            }
+        }
+        else {
+            IsMoving = true;
 
-        MoveSpeed = IsSprinting ? SprintSpeed : WalkSpeed;
+            if( startMoveTweener == null ) {
+                endMoveTweener.Kill();
+                endMoveTweener = null;
+                startMoveTweener = DOVirtual.Float( SpeedRange[0], SpeedRange[1], duration: 0.25f, v => MoveSpeed = v );
+            }
+
+            velocity = moveValue.normalized;
+        }
     }
 
     void Update() {
         rb.velocity = velocity * MoveSpeed;
+    }
+
+    void OnDestroy() {
+        InputManager.OnPlayerMoveAction -= OnMove;
     }
 }
 

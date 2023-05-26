@@ -9,7 +9,7 @@ public class SoundManager : MonoBehaviour
 
   public static SoundManager instance { get { return _instance; } }
 
-  private void Awake() {
+  void Awake() {
     if (_instance != null && _instance != this) {
       Destroy(this.gameObject);
     }

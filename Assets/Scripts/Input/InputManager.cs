@@ -65,4 +65,9 @@ public class InputManager : MonoBehaviour
         OnFootActions.Disable();
         InWeaponCraftingActions.Disable();
     }
+
+    void OnDestroy() {
+        WeaponCraftingPanel.EnablePlayerOnFootActionsAction -= EnableOnFootActions;
+        WeaponCraftingPanel.EnableWeaponCraftingActionsAction -= EnableInWeaponCraftingActions;
+    }
 }

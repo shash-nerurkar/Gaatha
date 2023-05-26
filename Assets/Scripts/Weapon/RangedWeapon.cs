@@ -17,6 +17,9 @@ public class RangedWeapon : MonoBehaviour, IWeapon
     public Transform Transform {
         get { return transform; }
     }
+    public GameObject GameObject {
+        get { return gameObject; }
+    }
     private Animator animator;
     public Animator Animator {
         get { return animator; }

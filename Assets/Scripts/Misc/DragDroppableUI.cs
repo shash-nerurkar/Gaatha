@@ -14,6 +14,7 @@ public class DragDroppableUI : MonoBehaviour
 	private Vector3 curScreenPos;
 	private Vector3 snapBackAnchoredPosition;
 	private Tweener snapBackTween;
+	public bool ShouldSnapBack;
 
     // FUNCS
     static public HUDOverlay.GetUIClickStatus IsUIClickedAction;
@@ -43,6 +44,8 @@ public class DragDroppableUI : MonoBehaviour
 	}
 
 	private void Awake() {
+		ShouldSnapBack = true;
+
 		rectTransform = GetComponent<RectTransform>();
 		cam = Camera.main;
 	}
@@ -71,7 +74,7 @@ public class DragDroppableUI : MonoBehaviour
 			yield return null;
 		}
 
-		if( snapBackAnchoredPosition != null ) {
+		if( snapBackAnchoredPosition != null && ShouldSnapBack ) {
 			snapBackTween = rectTransform
 				.DOAnchorPos( endValue: snapBackAnchoredPosition, duration: 0.5f )
 				.SetEase( ease: Ease.OutExpo )
