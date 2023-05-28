@@ -32,7 +32,7 @@ public class WeaponCraftingInput : MonoBehaviour, HUDElement
     // COMPONENTS
     private Button button;
 
-    // EVENTS
+    // ACTIONS
     public static event Action StartWeaponCraftingAction;
 
     void Awake() {

@@ -6,7 +6,7 @@ public class TrophyInteract : Interactable
     private BoxCollider2D cd;
     private Trophy trophy;
     
-    // EVENTS
+    // ACTIONS
     public static event Action<Trophy> TrophyInteractAction;
 
     void Awake() {

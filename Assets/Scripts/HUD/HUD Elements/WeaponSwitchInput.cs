@@ -44,7 +44,7 @@ public class WeaponSwitchInput : MonoBehaviour, HUDElement
         get { return rectTransform; }
     }
 
-    // EVENTS
+    // ACTIONS
     public static event Action WeaponSwitchAction;
 
     void Awake() {

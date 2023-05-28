@@ -5,7 +5,7 @@ public class StartGamePortal : Interactable
 {
     private BoxCollider2D cd;
     
-    // EVENTS
+    // ACTIONS
     public static event Action<SceneBuildIndex> StartGameAction;
 
     void Awake() {

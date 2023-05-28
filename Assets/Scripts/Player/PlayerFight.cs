@@ -4,7 +4,7 @@ using System;
 
 public class PlayerFight : MonoBehaviour
 {
-    // EVENTS
+    // ACTIONS
     public static event Action<Sprite, int> WeaponSpriteUpdateAction;
     public static event Action<bool> SwitchInputToggleAction;
 

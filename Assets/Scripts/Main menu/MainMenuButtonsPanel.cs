@@ -27,30 +27,22 @@ public class MainMenuButtonsPanel : MonoBehaviour, HUDElement
     public void Init( HUD HUD ) => this.HUD =  HUD;
     public void ToggleInteractable( bool isInteractable ) {}
     
-    // EVENTS
+    // ACTIONS
     public static event Action<SceneBuildIndex> StartGameAction;
+    public static event Action ShowCreditsPanelAction;
+    public static event Action ShowSettingsPanelAction;
 
     void Awake() {
         rectTransform = GetComponent<RectTransform>();
     }
 
-    public void OnNewGamePressed() {
-        StartGameAction?.Invoke( SceneBuildIndex.TrophyRoom );
-    }
+    public void OnNewGamePressed() => StartGameAction?.Invoke( SceneBuildIndex.TrophyRoom );
 
-    public void OnContinueGamePressed() {
-        StartGameAction?.Invoke( SceneBuildIndex.World );
-    }
+    public void OnContinueGamePressed() => StartGameAction?.Invoke( SceneBuildIndex.World );
 
-    public void OnOptionsPressed() {
-        
-    }
+    public void OnOptionsPressed() => ShowSettingsPanelAction?.Invoke();
 
-    public void OnCreditsPressed() {
-        
-    }
+    public void OnCreditsPressed() => ShowCreditsPanelAction?.Invoke();
 
-    public void OnQuitPressed() {
-        Application.Quit();
-    }
+    public void OnQuitPressed() => Application.Quit();
 }

@@ -9,7 +9,7 @@ public class PlayerUI : MonoBehaviour
 
     // private ValueBar HealthBar;
 
-    // EVENTS
+    // ACTIONS
     public static event Action<bool> InteractInputToggleAction;
     
     void Start() {

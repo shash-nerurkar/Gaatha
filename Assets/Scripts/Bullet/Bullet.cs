@@ -14,7 +14,7 @@ public class Bullet : MonoBehaviour
         cd = GetComponent<Collider2D>();
     }
 
-    void Update() {
+    void FixedUpdate() {
         rb.MovePosition(transform.position + transform.up * moveSpeed * Time.deltaTime);
     }
 

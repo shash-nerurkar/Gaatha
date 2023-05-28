@@ -26,6 +26,12 @@ public class InputManager : MonoBehaviour
         WeaponCraftingPanel.EnablePlayerOnFootActionsAction += EnableOnFootActions;
         WeaponCraftingPanel.EnableWeaponCraftingActionsAction += EnableInWeaponCraftingActions;
 
+        WorldManager.EnablePlayerOnFootActionsAction += EnableOnFootActions;
+        WorldManager.DisableAllActionsAction += DisableAllActions;
+
+        TrophyRoomManager.EnablePlayerOnFootActionsAction += EnableOnFootActions;
+        TrophyRoomManager.DisableAllActionsAction += DisableAllActions;
+
 		InWeaponCraftingActions.ScreenPosition.performed += context => {
 			WeaponCraftingScreenPositionAction?.Invoke( context.ReadValue<Vector2>() );
 		};
@@ -61,6 +67,11 @@ public class InputManager : MonoBehaviour
         OnFootActions.Disable();
     }
     
+    public void DisableAllActions() {
+        InWeaponCraftingActions.Disable();
+        OnFootActions.Disable();
+    }
+
     void OnDisable() {
         OnFootActions.Disable();
         InWeaponCraftingActions.Disable();
@@ -69,5 +80,11 @@ public class InputManager : MonoBehaviour
     void OnDestroy() {
         WeaponCraftingPanel.EnablePlayerOnFootActionsAction -= EnableOnFootActions;
         WeaponCraftingPanel.EnableWeaponCraftingActionsAction -= EnableInWeaponCraftingActions;
+
+        WorldManager.EnablePlayerOnFootActionsAction -= EnableOnFootActions;
+        WorldManager.DisableAllActionsAction -= DisableAllActions;
+
+        TrophyRoomManager.EnablePlayerOnFootActionsAction -= EnableOnFootActions;
+        TrophyRoomManager.DisableAllActionsAction -= DisableAllActions;
     }
 }

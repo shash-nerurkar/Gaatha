@@ -14,7 +14,7 @@ public class Trophy : MonoBehaviour
     // VARIABLES
     public TrophyData TrophyData;
 
-    // EVENTS
+    // ACTIONS
     public static event Action<Trophy> TrophyInteractAction;
 
     void Awake() {

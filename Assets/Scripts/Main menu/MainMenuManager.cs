@@ -15,6 +15,8 @@ public class MainMenuManager : ToLoadingScreen
 
         await Task.Delay( millisecondsDelay: 2000 );
 
+        SoundManager.instance.Play(Constants.SAD_HOPE_MUSIC);
+
         ScreenTransition.instance.FadeOut();
 
         MainMenuHUD.AdjustHUDElements(

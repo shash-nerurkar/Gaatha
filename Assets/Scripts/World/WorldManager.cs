@@ -1,11 +1,10 @@
 using UnityEngine;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using UnityEditor;
+using System;
 
 public class WorldManager : ToLoadingScreen
 {
-    private InputManager inputManager;
     private HUD HUD;
     private Player player;
     private ScreenTransition screenTransition;
@@ -14,9 +13,12 @@ public class WorldManager : ToLoadingScreen
     
     // FUNCS
     public delegate void GetAllWeaponsInGameDelegate( out List<IWeapon> weaponsInArm );
+    
+    // ACTIONS
+    public static event Action EnablePlayerOnFootActionsAction;
+    public static event Action DisableAllActionsAction;
 
     void Awake() {
-        inputManager = FindObjectOfType<InputManager>();
         HUD = FindObjectOfType<HUD>();
         player = FindObjectOfType<Player>();    
         screenTransition = FindObjectOfType<ScreenTransition>();
@@ -24,22 +26,17 @@ public class WorldManager : ToLoadingScreen
         WeaponCraftingResultFinder.GetAllGameWeaponsAction += GetAllGameWeapons;
 
         WeaponCraftingPanel.GetAllGameWeaponsAction += GetAllGameWeapons;
-    }
 
-    void GetAllGameWeapons( out List<IWeapon> weaponsInArm ) {
-        weaponsInArm = new List<IWeapon>();
-
-        foreach( GameObject weaponObject in allWeapons ) {
-            IWeapon weapon = weaponObject.GetComponent<IWeapon>();
-            if( weapon != null )
-                weaponsInArm.Add( weapon );
-        }
+        PausePanel.GoToMenuAction += StartTransitionToLoading;
+        PausePanel.OnGamePauseToggledAction += OnGamePauseToggled;
     }
 
     async void Start() {
         screenTransition.Show();
 
         await Task.Delay( millisecondsDelay: 1000 );
+
+        SoundManager.instance.Play(Constants.THE_CHASE_MUSIC);
 
         screenTransition.FadeOut();
 
@@ -55,12 +52,34 @@ public class WorldManager : ToLoadingScreen
 
         player.Fight.Init();
 
-        inputManager.EnableOnFootActions();
+        EnablePlayerOnFootActionsAction?.Invoke();
+    }
+
+    void OnGamePauseToggled( bool toggleStatus ) {
+        if( toggleStatus ) {
+            DisableAllActionsAction?.Invoke();
+        }
+        else {
+            EnablePlayerOnFootActionsAction?.Invoke();
+        }
+    }
+
+    void GetAllGameWeapons( out List<IWeapon> weaponsInArm ) {
+        weaponsInArm = new List<IWeapon>();
+
+        foreach( GameObject weaponObject in allWeapons ) {
+            IWeapon weapon = weaponObject.GetComponent<IWeapon>();
+            if( weapon != null )
+                weaponsInArm.Add( weapon );
+        }
     }
 
     void OnDestroy() {
         WeaponCraftingResultFinder.GetAllGameWeaponsAction -= GetAllGameWeapons;
 
         WeaponCraftingPanel.GetAllGameWeaponsAction -= GetAllGameWeapons;
+
+        PausePanel.GoToMenuAction -= StartTransitionToLoading;
+        PausePanel.OnGamePauseToggledAction -= OnGamePauseToggled;
     }
 }

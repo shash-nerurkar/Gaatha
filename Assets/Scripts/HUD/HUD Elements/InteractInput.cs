@@ -32,7 +32,7 @@ public class InteractInput : MonoBehaviour, HUDElement
     // COMPONENTS
     private Button button;
 
-    // EVENTS
+    // ACTIONS
     public static event Action InteractPressedAction;
 
     void Awake() {

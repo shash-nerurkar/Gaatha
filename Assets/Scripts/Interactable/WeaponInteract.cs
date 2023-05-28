@@ -7,7 +7,7 @@ public class WeaponInteract : Interactable
     public IWeapon Weapon { get; private set; }
 
     
-    // EVENTS
+    // ACTIONS
     public static event Action<IWeapon> WeaponInteractAction;
 
 

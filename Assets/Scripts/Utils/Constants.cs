@@ -12,16 +12,15 @@ public class Constants {
     public const string BACKGROUND_CONTAINER_TAG = "Background Container";
     public const string INFINITY_TEXT = "ꝏ";
 
+
     // LAYER MASKS
     public const string LAYERMASK_UI = "UI";
+
 
     // ANIMATION STATE NAMES
     public const string IDLE_ANIMATION_STATE_NAME = "idle";
     public const string ATTACK_ANIMATION_STATE_NAME = "attack";
 
-    // SOUND NAMES
-    public const string WAX_CROSSBOW_SOUND = "Wax Crossbow Sound";
-    public const string WAX_SWORD_SOUND = "Wax Sword Sound";
 
     // SORTING LAYERS
     public const string SORTING_LAYER_FLOOR = "Floor";
@@ -36,6 +35,13 @@ public class Constants {
         SORTING_LAYER_FOREGROUND,
         SORTING_LAYER_CAMERA
     };
+
+    // SOUND NAMES
+    public const string WAX_CROSSBOW_SOUND = "Wax Crossbow Sound";
+    public const string WAX_SWORD_SOUND = "Wax Sword Sound";
+    public const string HAPPY_DAYS_MUSIC = "Happy Days Music";
+    public const string SAD_HOPE_MUSIC = "Sad Hope Music";
+    public const string THE_CHASE_MUSIC = "The Chase Music";
 }
 
 public enum WeaponAttackType {

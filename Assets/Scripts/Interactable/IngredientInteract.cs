@@ -6,7 +6,7 @@ public class IngredientInteract : Interactable
     public Ingredient Ingredient { get; private set; }
     private BoxCollider2D cd;
     
-    // EVENTS
+    // ACTIONS
     public static event Action<Ingredient> InteractWithIngredientAction;
 
     void Awake() {
