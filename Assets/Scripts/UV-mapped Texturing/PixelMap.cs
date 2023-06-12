@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Editor
+namespace Editor2
 {
     public class PixelMap : ScriptableObject
     {

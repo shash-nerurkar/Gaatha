@@ -2,7 +2,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 
-namespace Editor
+namespace Editor2
 {
     public class TexturePostprocessor : AssetPostprocessor
     {

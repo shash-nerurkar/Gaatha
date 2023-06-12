@@ -1,0 +1,123 @@
+"filename", "language", "JSON", "Markdown", "ShaderLab", "C#", "comment", "blank", "total"
+"d:\Projects\Unity\Gatha\Assets\Plugins\Akassets\SmoothGridLayout\Editor\SmoothLayoutEditor.cs", "C#", 0, 0, 0, 154, 0, 17, 171
+"d:\Projects\Unity\Gatha\Assets\Plugins\Akassets\SmoothGridLayout\Editor\SmoothLayoutEditorCreateMenu.cs", "C#", 0, 0, 0, 80, 0, 12, 92
+"d:\Projects\Unity\Gatha\Assets\Plugins\Akassets\SmoothGridLayout\Runtime\ElementsContainer.cs", "C#", 0, 0, 0, 13, 0, 3, 16
+"d:\Projects\Unity\Gatha\Assets\Plugins\Akassets\SmoothGridLayout\Runtime\LerpToPlaceholder.cs", "C#", 0, 0, 0, 21, 0, 4, 25
+"d:\Projects\Unity\Gatha\Assets\Plugins\Akassets\SmoothGridLayout\Runtime\SmoothGridLayoutUI.cs", "C#", 0, 0, 0, 72, 0, 10, 82
+"d:\Projects\Unity\Gatha\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleAudio.cs", "C#", 0, 0, 0, 98, 80, 25, 203
+"d:\Projects\Unity\Gatha\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleEPOOutline.cs", "C#", 0, 0, 0, 109, 18, 20, 147
+"d:\Projects\Unity\Gatha\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModulePhysics.cs", "C#", 0, 0, 0, 137, 60, 20, 217
+"d:\Projects\Unity\Gatha\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModulePhysics2D.cs", "C#", 0, 0, 0, 125, 51, 18, 194
+"d:\Projects\Unity\Gatha\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleSprite.cs", "C#", 0, 0, 0, 63, 17, 14, 94
+"d:\Projects\Unity\Gatha\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUI.cs", "C#", 0, 0, 0, 390, 203, 70, 663
+"d:\Projects\Unity\Gatha\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUnityVersion.cs", "C#", 0, 0, 0, 264, 99, 41, 404
+"d:\Projects\Unity\Gatha\Assets\Plugins\Demigiant\DOTween\Modules\DOTweenModuleUtils.cs", "C#", 0, 0, 0, 123, 27, 18, 168
+"d:\Projects\Unity\Gatha\Assets\Resources\SAAPA\Scripts\Saapa.cs", "C#", 0, 0, 0, 58, 6, 15, 79
+"d:\Projects\Unity\Gatha\Assets\Resources\SAAPA\Scripts\Tentacle.cs", "C#", 0, 0, 0, 46, 9, 12, 67
+"d:\Projects\Unity\Gatha\Assets\Resources\SAAPA\Scripts\TentacleTypeTwo.cs", "C#", 0, 0, 0, 103, 11, 25, 139
+"d:\Projects\Unity\Gatha\Assets\Scripts\Bullet\Bullet.cs", "C#", 0, 0, 0, 21, 6, 11, 38
+"d:\Projects\Unity\Gatha\Assets\Scripts\Camera\CameraShake.cs", "C#", 0, 0, 0, 26, 4, 12, 42
+"d:\Projects\Unity\Gatha\Assets\Scripts\Camera\GameCamera.cs", "C#", 0, 0, 0, 23, 0, 9, 32
+"d:\Projects\Unity\Gatha\Assets\Scripts\Credits Panel\CreditsPanel.cs", "C#", 0, 0, 0, 24, 3, 10, 37
+"d:\Projects\Unity\Gatha\Assets\Scripts\Element\ElementData.cs", "C#", 0, 0, 0, 9, 0, 3, 12
+"d:\Projects\Unity\Gatha\Assets\Scripts\Enemy\Enemy.cs", "C#", 0, 0, 0, 10, 0, 5, 15
+"d:\Projects\Unity\Gatha\Assets\Scripts\Enemy\EnemyStateMachine.cs", "C#", 0, 0, 0, 22, 1, 7, 30
+"d:\Projects\Unity\Gatha\Assets\Scripts\Enemy\states\EnemyBaseState.cs", "C#", 0, 0, 0, 8, 0, 2, 10
+"d:\Projects\Unity\Gatha\Assets\Scripts\Enemy\states\EnemyPatrolState.cs", "C#", 0, 0, 0, 12, 2, 6, 20
+"d:\Projects\Unity\Gatha\Assets\Scripts\HUD\HUD Elements\HUDElement.cs", "C#", 0, 0, 0, 10, 0, 4, 14
+"d:\Projects\Unity\Gatha\Assets\Scripts\HUD\HUD Elements\InteractInput.cs", "C#", 0, 0, 0, 40, 2, 13, 55
+"d:\Projects\Unity\Gatha\Assets\Scripts\HUD\HUD Elements\MovementInput.cs", "C#", 0, 0, 0, 26, 0, 8, 34
+"d:\Projects\Unity\Gatha\Assets\Scripts\HUD\HUD Elements\PauseInput.cs", "C#", 0, 0, 0, 26, 0, 7, 33
+"d:\Projects\Unity\Gatha\Assets\Scripts\HUD\HUD Elements\WeaponCraftingInput.cs", "C#", 0, 0, 0, 36, 2, 11, 49
+"d:\Projects\Unity\Gatha\Assets\Scripts\HUD\HUD Elements\WeaponShootInput.cs", "C#", 0, 0, 0, 43, 13, 17, 73
+"d:\Projects\Unity\Gatha\Assets\Scripts\HUD\HUD Elements\WeaponSwitchInput.cs", "C#", 0, 0, 0, 62, 3, 20, 85
+"d:\Projects\Unity\Gatha\Assets\Scripts\HUD\HUD.cs", "C#", 0, 0, 0, 86, 9, 15, 110
+"d:\Projects\Unity\Gatha\Assets\Scripts\Ingredient\Ingredient.cs", "C#", 0, 0, 0, 17, 2, 4, 23
+"d:\Projects\Unity\Gatha\Assets\Scripts\Ingredient\IngredientData.cs", "C#", 0, 0, 0, 12, 1, 6, 19
+"d:\Projects\Unity\Gatha\Assets\Scripts\Input\InputManager.cs", "C#", 0, 0, 0, 62, 6, 23, 91
+"d:\Projects\Unity\Gatha\Assets\Scripts\Input\PlayerInputActions.cs", "C#", 0, 0, 0, 999, 16, 16, 1031
+"d:\Projects\Unity\Gatha\Assets\Scripts\Interactable\IngredientInteract.cs", "C#", 0, 0, 0, 15, 1, 5, 21
+"d:\Projects\Unity\Gatha\Assets\Scripts\Interactable\Interactable.cs", "C#", 0, 0, 0, 6, 0, 3, 9
+"d:\Projects\Unity\Gatha\Assets\Scripts\Interactable\StartGamePortal.cs", "C#", 0, 0, 0, 13, 1, 5, 19
+"d:\Projects\Unity\Gatha\Assets\Scripts\Interactable\TrophyInteract.cs", "C#", 0, 0, 0, 15, 1, 6, 22
+"d:\Projects\Unity\Gatha\Assets\Scripts\Interactable\WeaponInteract.cs", "C#", 0, 0, 0, 21, 3, 9, 33
+"d:\Projects\Unity\Gatha\Assets\Scripts\Loading\LoadingScreenManager.cs", "C#", 0, 0, 0, 20, 0, 9, 29
+"d:\Projects\Unity\Gatha\Assets\Scripts\Loading\ToLoadingScreen.cs", "C#", 0, 0, 0, 14, 0, 6, 20
+"d:\Projects\Unity\Gatha\Assets\Scripts\Main menu\MainMenuButtonsPanel.cs", "C#", 0, 0, 0, 35, 1, 13, 49
+"d:\Projects\Unity\Gatha\Assets\Scripts\Main menu\MainMenuHUD.cs", "C#", 0, 0, 0, 40, 5, 9, 54
+"d:\Projects\Unity\Gatha\Assets\Scripts\Main menu\MainMenuManager.cs", "C#", 0, 0, 0, 23, 0, 10, 33
+"d:\Projects\Unity\Gatha\Assets\Scripts\Main menu\MainMenuTitlePanel.cs", "C#", 0, 0, 0, 26, 0, 7, 33
+"d:\Projects\Unity\Gatha\Assets\Scripts\Misc\CircleRenderer.cs", "C#", 0, 0, 0, 30, 1, 9, 40
+"d:\Projects\Unity\Gatha\Assets\Scripts\Misc\CustomButtonEventHandler.cs", "C#", 0, 0, 0, 37, 1, 12, 50
+"d:\Projects\Unity\Gatha\Assets\Scripts\Misc\DragDroppable.cs", "C#", 0, 0, 0, 58, 2, 15, 75
+"d:\Projects\Unity\Gatha\Assets\Scripts\Misc\DragDroppableUI.cs", "C#", 0, 0, 0, 64, 3, 18, 85
+"d:\Projects\Unity\Gatha\Assets\Scripts\Misc\FindMissingScriptsRecursively.cs", "C#", 0, 0, 0, 107, 3, 18, 128
+"d:\Projects\Unity\Gatha\Assets\Scripts\Misc\GridLayoutAutoExpand.cs", "C#", 0, 0, 0, 22, 2, 8, 32
+"d:\Projects\Unity\Gatha\Assets\Scripts\Misc\HUDOverlay.cs", "C#", 0, 0, 0, 42, 3, 13, 58
+"d:\Projects\Unity\Gatha\Assets\Scripts\Misc\ScreenTransition.cs", "C#", 0, 0, 0, 51, 3, 15, 69
+"d:\Projects\Unity\Gatha\Assets\Scripts\Misc\Timer.cs", "C#", 0, 0, 0, 44, 1, 9, 54
+"d:\Projects\Unity\Gatha\Assets\Scripts\Misc\ValueBar.cs", "C#", 0, 0, 0, 49, 0, 8, 57
+"d:\Projects\Unity\Gatha\Assets\Scripts\Misc\ValueBarAsync.cs", "C#", 0, 0, 0, 33, 0, 4, 37
+"d:\Projects\Unity\Gatha\Assets\Scripts\Pause Panel\PauseButton.cs", "C#", 0, 0, 0, 32, 3, 10, 45
+"d:\Projects\Unity\Gatha\Assets\Scripts\Pause Panel\PausePanel.cs", "C#", 0, 0, 0, 37, 9, 16, 62
+"d:\Projects\Unity\Gatha\Assets\Scripts\Player\Player.cs", "C#", 0, 0, 0, 16, 0, 3, 19
+"d:\Projects\Unity\Gatha\Assets\Scripts\Player\PlayerFight.cs", "C#", 0, 0, 0, 109, 35, 43, 187
+"d:\Projects\Unity\Gatha\Assets\Scripts\Player\PlayerInteract.cs", "C#", 0, 0, 0, 71, 4, 20, 95
+"d:\Projects\Unity\Gatha\Assets\Scripts\Player\PlayerLook.cs", "C#", 0, 0, 0, 71, 19, 23, 113
+"d:\Projects\Unity\Gatha\Assets\Scripts\Player\PlayerMovement.cs", "C#", 0, 0, 0, 46, 4, 12, 62
+"d:\Projects\Unity\Gatha\Assets\Scripts\Player\PlayerUI.cs", "C#", 0, 0, 0, 13, 3, 7, 23
+"d:\Projects\Unity\Gatha\Assets\Scripts\Settings Panel\SettingsPanel.cs", "C#", 0, 0, 0, 45, 4, 16, 65
+"d:\Projects\Unity\Gatha\Assets\Scripts\Sound\Sound.cs", "C#", 0, 0, 0, 13, 0, 5, 18
+"d:\Projects\Unity\Gatha\Assets\Scripts\Sound\SoundManager.cs", "C#", 0, 0, 0, 59, 4, 16, 79
+"d:\Projects\Unity\Gatha\Assets\Scripts\Trophy room\Trophy.cs", "C#", 0, 0, 0, 24, 5, 8, 37
+"d:\Projects\Unity\Gatha\Assets\Scripts\Trophy room\TrophyData.cs", "C#", 0, 0, 0, 8, 0, 3, 11
+"d:\Projects\Unity\Gatha\Assets\Scripts\Trophy room\TrophyPanel.cs", "C#", 0, 0, 0, 39, 0, 11, 50
+"d:\Projects\Unity\Gatha\Assets\Scripts\Trophy room\TrophyRoomManager.cs", "C#", 0, 0, 0, 53, 1, 16, 70
+"d:\Projects\Unity\Gatha\Assets\Scripts\UV-mapped Texturing\PixelMap.cs", "C#", 0, 0, 0, 9, 0, 1, 10
+"d:\Projects\Unity\Gatha\Assets\Scripts\UV-mapped Texturing\TexturePostprocessor.cs", "C#", 0, 0, 0, 82, 0, 15, 97
+"d:\Projects\Unity\Gatha\Assets\Scripts\Utils\Constants.cs", "C#", 0, 0, 0, 80, 33, 38, 151
+"d:\Projects\Unity\Gatha\Assets\Scripts\Utils\SerializedDictionary.cs", "C#", 0, 0, 0, 38, 0, 8, 46
+"d:\Projects\Unity\Gatha\Assets\Scripts\Weapon Crafting Panel\HUD Overlay Elements\Component Card\WeaponCraftingComponentCard.cs", "C#", 0, 0, 0, 169, 27, 47, 243
+"d:\Projects\Unity\Gatha\Assets\Scripts\Weapon Crafting Panel\HUD Overlay Elements\Component Card\WeaponCraftingComponentElementCard.cs", "C#", 0, 0, 0, 14, 4, 5, 23
+"d:\Projects\Unity\Gatha\Assets\Scripts\Weapon Crafting Panel\HUD Overlay Elements\Component Card\WeaponCraftingComponentOnDragCard.cs", "C#", 0, 0, 0, 29, 2, 7, 38
+"d:\Projects\Unity\Gatha\Assets\Scripts\Weapon Crafting Panel\HUD Overlay Elements\Current Components\WeaponCraftingCurrentComponentPanel.cs", "C#", 0, 0, 0, 56, 10, 16, 82
+"d:\Projects\Unity\Gatha\Assets\Scripts\Weapon Crafting Panel\HUD Overlay Elements\Current Components\WeaponCraftingCurrentComponentPanelsPanel.cs", "C#", 0, 0, 0, 42, 1, 13, 56
+"d:\Projects\Unity\Gatha\Assets\Scripts\Weapon Crafting Panel\HUD Overlay Elements\Results\WeaponCraftingResultDetector.cs", "C#", 0, 0, 0, 7, 0, 4, 11
+"d:\Projects\Unity\Gatha\Assets\Scripts\Weapon Crafting Panel\HUD Overlay Elements\Results\WeaponCraftingResultsPanel.cs", "C#", 0, 0, 0, 80, 18, 26, 124
+"d:\Projects\Unity\Gatha\Assets\Scripts\Weapon Crafting Panel\HUD Overlay Elements\WeaponCraftingAvailableComponentsPanel.cs", "C#", 0, 0, 0, 32, 1, 10, 43
+"d:\Projects\Unity\Gatha\Assets\Scripts\Weapon Crafting Panel\HUD Overlay Elements\WeaponCraftingPanel.cs", "C#", 0, 0, 0, 138, 23, 45, 206
+"d:\Projects\Unity\Gatha\Assets\Scripts\Weapon Crafting Panel\WeaponCraftingComponentData.cs", "C#", 0, 0, 0, 12, 2, 3, 17
+"d:\Projects\Unity\Gatha\Assets\Scripts\Weapon Crafting Panel\WeaponCraftingResultFinder.cs", "C#", 0, 0, 0, 44, 5, 13, 62
+"d:\Projects\Unity\Gatha\Assets\Scripts\Weapon\Data\MeleeWeaponData.cs", "C#", 0, 0, 0, 5, 1, 3, 9
+"d:\Projects\Unity\Gatha\Assets\Scripts\Weapon\Data\RangedWeaponData.cs", "C#", 0, 0, 0, 11, 0, 5, 16
+"d:\Projects\Unity\Gatha\Assets\Scripts\Weapon\Data\WeaponData.cs", "C#", 0, 0, 0, 22, 0, 7, 29
+"d:\Projects\Unity\Gatha\Assets\Scripts\Weapon\IWeapon.cs", "C#", 0, 0, 0, 47, 21, 20, 88
+"d:\Projects\Unity\Gatha\Assets\Scripts\Weapon\MeleeWeapon.cs", "C#", 0, 0, 0, 77, 17, 15, 109
+"d:\Projects\Unity\Gatha\Assets\Scripts\Weapon\RangedWeapon.cs", "C#", 0, 0, 0, 117, 11, 22, 150
+"d:\Projects\Unity\Gatha\Assets\Scripts\Weapon\WeaponPivot.cs", "C#", 0, 0, 0, 8, 0, 3, 11
+"d:\Projects\Unity\Gatha\Assets\Scripts\Weapon\WeaponQuiver.cs", "C#", 0, 0, 0, 8, 0, 3, 11
+"d:\Projects\Unity\Gatha\Assets\Scripts\Weapon\Weapons\Wax Crossbow\WaxCrossbow.cs", "C#", 0, 0, 0, 3, 0, 2, 5
+"d:\Projects\Unity\Gatha\Assets\Scripts\Weapon\Weapons\Wax Sword\WaxSword.cs", "C#", 0, 0, 0, 3, 0, 2, 5
+"d:\Projects\Unity\Gatha\Assets\Scripts\World\WorldManager.cs", "C#", 0, 0, 0, 62, 2, 22, 86
+"d:\Projects\Unity\Gatha\Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader", "ShaderLab", 0, 0, 109, 0, 2, 33, 144
+"d:\Projects\Unity\Gatha\Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader", "ShaderLab", 0, 0, 112, 0, 3, 31, 146
+"d:\Projects\Unity\Gatha\Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader", "ShaderLab", 0, 0, 109, 0, 2, 33, 144
+"d:\Projects\Unity\Gatha\Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader", "ShaderLab", 0, 0, 243, 0, 4, 71, 318
+"d:\Projects\Unity\Gatha\Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader", "ShaderLab", 0, 0, 241, 0, 4, 66, 311
+"d:\Projects\Unity\Gatha\Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader", "ShaderLab", 0, 0, 188, 0, 10, 50, 248
+"d:\Projects\Unity\Gatha\Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader", "ShaderLab", 0, 0, 183, 0, 8, 50, 241
+"d:\Projects\Unity\Gatha\Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader", "ShaderLab", 0, 0, 82, 0, 4, 21, 107
+"d:\Projects\Unity\Gatha\Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader", "ShaderLab", 0, 0, 183, 0, 8, 50, 241
+"d:\Projects\Unity\Gatha\Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader", "ShaderLab", 0, 0, 103, 0, 8, 28, 139
+"d:\Projects\Unity\Gatha\Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader", "ShaderLab", 0, 0, 122, 0, 4, 33, 159
+"d:\Projects\Unity\Gatha\Assets\TextMesh Pro\Shaders\TMP_SDF.shader", "ShaderLab", 0, 0, 243, 0, 4, 71, 318
+"d:\Projects\Unity\Gatha\Assets\TextMesh Pro\Shaders\TMP_Sprite.shader", "ShaderLab", 0, 0, 97, 0, 0, 20, 117
+"d:\Projects\Unity\Gatha\Assets\TextMesh Pro\Shaders\TMPro.cginc", "ShaderLab", 0, 0, 63, 0, 2, 20, 85
+"d:\Projects\Unity\Gatha\Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc", "ShaderLab", 0, 0, 122, 0, 2, 34, 158
+"d:\Projects\Unity\Gatha\Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc", "ShaderLab", 0, 0, 62, 0, 10, 14, 86
+"d:\Projects\Unity\Gatha\Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc", "ShaderLab", 0, 0, 76, 0, 7, 19, 102
+"d:\Projects\Unity\Gatha\Assets\TextMesh Pro\Sprites\EmojiOne.json", "JSON", 155, 0, 0, 0, 0, 2, 157
+"d:\Projects\Unity\Gatha\Packages\manifest.json", "JSON", 48, 0, 0, 0, 0, 1, 49
+"d:\Projects\Unity\Gatha\Packages\packages-lock.json", "JSON", 538, 0, 0, 0, 0, 1, 539
+"d:\Projects\Unity\Gatha\README.md", "Markdown", 0, 2, 0, 0, 0, 1, 3
+"Total", "-", 741, 2, 2338, 6026, 1033, 1957, 12097
