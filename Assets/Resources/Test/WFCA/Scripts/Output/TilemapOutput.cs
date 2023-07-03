@@ -35,7 +35,7 @@ public class TilemapOutput : IOutputCreator<Tilemap>
         // DEBUG END
 
         for( int row = 0; row < valuesGrid.Length; row++ )
-            for( int col = 0; col < valuesGrid[0].Length; col++ ) {
+            for( int col = 0; col < valuesGrid[ 0 ].Length; col++ ) {
                 TileBase tile = ( TileBase )this.indexManager.GetValue( valuesGrid[ row ][ col ] ).Value;
                 this.outputImage.SetTile( new Vector3Int( col, row, 0 ), tile );
             }   
