@@ -7,168 +7,71 @@ namespace WaxWorldGeneration
     public class WaxRoom : MonoBehaviour
     {
         private ShapeRenderer shapeRenderer;
-        private Tilemap OutputTilemap;
-        private TileBase DefaultTile;
+        private Tilemap outputTilemap;
+        private WaxTilePlacer tilePlacer;
 
         public ElementShape RoomShape { get; private set; }
-        public int RoomElevation { get; private set; }
         public Vector3Int RoomPosition { get; private set; }
         public Vector3Int RoomDimensions { get; private set; }
 
-        private Vector3Int[] roomVertexPoints;
+        public Vector3Int[] RoomVertexPoints { get; private set; }
 
-        void Awake () => WaxWorldGenMain.ClearFloorAction += DestroyRoom;
-    
-        private void DestroyRoom () => Destroy ( gameObject );
+        private List<Vector3Int> roomFloorPoints = new List<Vector3Int>();
+ 
+        public void DestroyRoom () {
+            foreach ( Vector3Int point in roomFloorPoints )
+                outputTilemap.SetTile ( point, null );
 
-        void OnDestroy () => WaxWorldGenMain.ClearFloorAction -= DestroyRoom;
+            Destroy ( gameObject );
+        }
 
-        public void InitRoom ( Tilemap outputTilemap, TileBase defaultTile, ElementShape roomShape, int roomElevation, Vector3Int roomDimensions ) {
-            this.OutputTilemap = outputTilemap;
-            this.DefaultTile = defaultTile;
+        public void InitRoom ( Tilemap outputTilemap, WaxTilePlacer tilePlacer, ElementShape roomShape, Vector3Int roomDimensions ) {
+            this.outputTilemap = outputTilemap;
+            this.tilePlacer = tilePlacer;
 
             this.RoomShape = roomShape;
-            this.RoomPosition = OutputTilemap.WorldToCell ( transform.position );
+            this.RoomPosition = outputTilemap.WorldToCell ( transform.position );
             this.RoomDimensions = roomDimensions;
-            this.RoomElevation = roomElevation;
-            
-            GenerateRoomVertices ();
-            CreateRoom ();
+
+            GenerateRoomVertexPoints ( roomCoords: transform.position );
         }
 
-        public void GenerateRoomVertices (  ) {
-            Vector3Int[] GenerateQuadPoints() {
-                return new Vector3Int[4] {
-                    RoomPosition + new Vector3Int( 0,                   0                   ) - RoomDimensions / 2,
-                    RoomPosition + new Vector3Int( 0,                   RoomDimensions.y    ) - RoomDimensions / 2,
-                    RoomPosition + new Vector3Int( RoomDimensions.x,    RoomDimensions.y    ) - RoomDimensions / 2,
-                    RoomPosition + new Vector3Int( RoomDimensions.x,    0                   ) - RoomDimensions / 2
-                };
-            }
+        public void GenerateRoomVertexPoints ( Vector3 roomCoords ) {
+            transform.position = roomCoords;
+            this.RoomPosition = outputTilemap.WorldToCell ( transform.position );
 
-            Vector3Int[] GenerateCirclePoints() {
-                int vertexCount = 50;
-                
-                Vector3Int[] randomPolygonVertexPoints = new Vector3Int [ vertexCount ];
+            RoomVertexPoints = new Vector3Int [ 0 ];
+            roomFloorPoints.Clear ();
 
-                float angleIncrement = 360f / vertexCount;
-                for ( int i = 0; i < vertexCount; i++ ) {
-                    float angle = i * angleIncrement * Mathf.Deg2Rad;
-                    
-                    float x = Mathf.Cos ( angle ) * RoomDimensions.x / 2;
-                    float y = Mathf.Sin ( angle ) * RoomDimensions.y / 2;
-
-                    randomPolygonVertexPoints[ i ] = RoomPosition + new Vector3Int ( Mathf.RoundToInt ( x ), Mathf.RoundToInt ( y ), 0 );
-                }
-
-                return randomPolygonVertexPoints;
-            }
-
-            Vector3Int[] GenerateHexagonPoints() {
-                return new Vector3Int[6] {
-                    RoomPosition + new Vector3Int( 0,                           RoomDimensions.y * 2 / 3    ) - RoomDimensions / 2,
-                    RoomPosition + new Vector3Int( RoomDimensions.x / 3,        RoomDimensions.y            ) - RoomDimensions / 2,
-                    RoomPosition + new Vector3Int( RoomDimensions.x * 2 / 3,    RoomDimensions.y            ) - RoomDimensions / 2,
-                    RoomPosition + new Vector3Int( RoomDimensions.x,            RoomDimensions.y / 3        ) - RoomDimensions / 2,
-                    RoomPosition + new Vector3Int( RoomDimensions.x * 2 / 3,    0                           ) - RoomDimensions / 2,
-                    RoomPosition + new Vector3Int( RoomDimensions.x / 3,        0                           ) - RoomDimensions / 2
-                };
-            }
-
-            Vector3Int[] GenerateRandomPolygonPoints() {
-                int vertexCount = Random.Range ( 3, 12 );
-                
-                Vector3Int[] randomPolygonVertexPoints = new Vector3Int [ vertexCount ];
-
-                float angleIncrement = 360f / vertexCount;
-                for ( int i = 0; i < vertexCount; i++ ) {
-                    float angle = i * angleIncrement * Mathf.Deg2Rad;
-                    
-                    float x = Mathf.Cos( angle ) * RoomDimensions.x / 2;
-                    float y = Mathf.Sin( angle ) * RoomDimensions.y / 2;
-
-                    randomPolygonVertexPoints[ i ] = RoomPosition + new Vector3Int ( Mathf.RoundToInt ( x ), Mathf.RoundToInt ( y ), 0 );
-                }
-
-                return randomPolygonVertexPoints;
-            }
-            
-            switch( RoomShape ) {
-                default:
-                case ElementShape.Quad:
-                    roomVertexPoints = GenerateQuadPoints();
-                    break;
-                    
-                case ElementShape.Circle:
-                    roomVertexPoints = GenerateCirclePoints();
-                    break;
-                    
-                case ElementShape.Hexagon:
-                    roomVertexPoints = GenerateHexagonPoints();
-                    break;
-                    
-                case ElementShape.Polygon:
-                    roomVertexPoints = GenerateRandomPolygonPoints();
-                    break;  
-            }
+            RoomVertexPoints = WorldGenHelper.GenerateShapeVertexPoints ( shape: RoomShape, centerPoint: RoomPosition, dimensions: RoomDimensions );
+        
+            DrawRoomGizmo ();
         }
 
-        private void CreateRoom () {
-            DrawRoomGizmo();
-
-            TileRoom();
-        }
-
-        private void TileRoom () {
-            bool IsPointInsidePolygon( Vector3Int point, Vector3Int[] polygon ) {
-                int IsLeft ( Vector3Int a, Vector3Int b, Vector3Int c ) => ( ( b.x - a.x ) * ( c.y - a.y ) - ( c.x - a.x ) * ( b.y - a.y ) );
-
-                int windingNumber = 0;
-                int vertexCount = polygon.Length;
-
-                for ( int i = 0; i < vertexCount; i++ ) {
-                    Vector3Int currentVertex = polygon[ i ];
-                    Vector3Int nextVertex = polygon[ ( i + 1 ) % vertexCount ];
-
-                    if ( currentVertex.y <= point.y ) {
-                        if ( nextVertex.y > point.y && IsLeft( currentVertex, nextVertex, point ) > 0 )
-                            windingNumber++;
-                    }
-                    else {
-                        if ( nextVertex.y <= point.y && IsLeft( currentVertex, nextVertex, point ) < 0 )
-                            windingNumber--;
-                    }
-                }
-
-                return windingNumber != 0;
-            }
-
-            List<Vector3Int> pointsToFill = new List<Vector3Int>();
-
+        public void TileRoom () {
             for ( int i = 0; i < RoomDimensions.x; i++ ) {
                 for ( int j = 0; j < RoomDimensions.y; j++ ) {
                     Vector3Int currentPoint = RoomPosition + new Vector3Int ( i, j ) - RoomDimensions / 2;
 
-                    if ( IsPointInsidePolygon ( currentPoint, roomVertexPoints ) )
-                        pointsToFill.Add ( currentPoint );
+                    if ( WorldGenHelper.IsPointInsideShape ( point: currentPoint, shapeVertexPoints: RoomVertexPoints ) )
+                        roomFloorPoints.Add ( currentPoint );
                 }
             }
 
-            foreach ( Vector3Int point in pointsToFill )
-                OutputTilemap.SetTile ( point, DefaultTile );
+            tilePlacer?.PlaceFloorTiles ( points: roomFloorPoints.ToArray (), outputTilemap: outputTilemap );
         }
 
         private void DrawRoomGizmo () {
             shapeRenderer = GetComponent<ShapeRenderer>();
 
             if( shapeRenderer != null ) {
-                Vector3[] roomVertexCoords = new Vector3[ roomVertexPoints.Length ];
-                for( int i = 0; i < roomVertexPoints.Length; i++ )
-                    roomVertexCoords[i] = OutputTilemap.CellToWorld( roomVertexPoints[ i ] );
+                Vector3[] roomVertexCoords = new Vector3[ RoomVertexPoints.Length ];
+                for( int i = 0; i < RoomVertexPoints.Length; i++ )
+                    roomVertexCoords[i] = outputTilemap.CellToWorld( RoomVertexPoints[ i ] );
 
                 shapeRenderer.DrawPolygon( roomVertexCoords, Color.blue, 0.1f );
             }
         }
-}
+    }
 }
 

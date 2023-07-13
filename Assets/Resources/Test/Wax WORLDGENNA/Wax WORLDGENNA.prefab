@@ -178,8 +178,9 @@ GameObject:
   m_Component:
   - component: {fileID: 115853294915839998}
   - component: {fileID: 2282618286110166729}
-  - component: {fileID: 2282618286110166714}
   - component: {fileID: 2282618286110166716}
+  - component: {fileID: 2282618286110166714}
+  - component: {fileID: 2018851009}
   m_Layer: 0
   m_Name: Wax WORLDGENNA
   m_TagString: Untagged
@@ -314,30 +315,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &2282618286110166714
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1148107452707872959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb570ebd7b052564cb3dafcf1e2d9ab7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  waxRoomPrefab: {fileID: 5450829541976816543, guid: bf963f46977ee7644852ed53e4b7b656, type: 3}
-  outputTilemapGrid: {fileID: 108925778939042045}
-  outputTilemap: {fileID: 4541077962763935946}
-  minimumFloorSize: {x: 10, y: 10, z: 0}
-  maximumFloorSize: {x: 20, y: 20, z: 0}
-  maximumFloorElevation: 5
-  selectedRoomShapes: 00000000
-  minimumRoomSize: {x: 2, y: 2, z: 0}
-  maximumRoomSize: {x: 5, y: 5, z: 0}
-  minimumRoomCount: 5
-  maximumRoomCount: 10
-  maximumDistanceBetweenRooms: 5
 --- !u!114 &2282618286110166716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,6 +328,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRenderer: {fileID: 2282618286110166729}
+--- !u!114 &2282618286110166714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148107452707872959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb570ebd7b052564cb3dafcf1e2d9ab7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waxRoomPrefab: {fileID: 5450829541976816543, guid: bf963f46977ee7644852ed53e4b7b656, type: 3}
+  outputTilemap: {fileID: 4541077962763935946}
+  floorShape: 3
+  minFloorSize: {x: 100, y: 100, z: 0}
+  maxFloorSize: {x: 120, y: 120, z: 15}
+  roomShapes: 03000000
+  roomSizeRange: {x: 10, y: 20}
+  roomCountRange: {x: 5, y: 15}
+  dummyPrefab: {fileID: 596948029850515310, guid: 14f95e85bbe12254085fdb79bd02f66b, type: 3}
+--- !u!114 &2018851009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148107452707872959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 455a84d2740a6aa4b98f6d3cf401da66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultTile: {fileID: 11400000, guid: 42aca5bf97444a14fb8971310496f562, type: 2}
 --- !u!1 &1252814229533702965
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,7 +418,7 @@ GameObject:
   - component: {fileID: 1238660918141135466}
   - component: {fileID: 8003717350114520482}
   m_Layer: 0
-  m_Name: Grid
+  m_Name: Illustrative Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
