@@ -1,2 +1,2 @@
-# Gatha
-Source code for the video game Gatha
+# Gaatha
+Source code for the video game Gaatha
