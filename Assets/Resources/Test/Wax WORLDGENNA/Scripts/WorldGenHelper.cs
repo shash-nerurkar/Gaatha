@@ -6,13 +6,6 @@ using UnityEngine.Tilemaps;
 
 public static class WorldGenHelper
 {
-    public static Vector2 GetRandomVectorBetween ( Vector2 minVector, Vector2 maxVector ) {
-        return new Vector2( 
-            Random.Range( minVector.x, maxVector.x ),
-            Random.Range( minVector.y, maxVector.y )
-        );
-    }
-
     public static Vector2Int GetRandomVectorBetween ( Vector2Int minVector, Vector2Int maxVector ) {
         return new Vector2Int( 
             Random.Range( minVector.x, maxVector.x ),
@@ -24,15 +17,7 @@ public static class WorldGenHelper
     public static void SortVector3IntArray( Vector3Int[] array ) {
         Array.Sort( array, new Vector3IntComparer () );
     }
-    
-    public static Vector2Int[] ChangeVector3IntArrayToVector2IntArray ( Vector3Int[] array ) {
-        Vector2Int[] vector2IntArray = new Vector2Int[ array.Length ];
-        for ( int index = 0; index < array.Length; index++ )
-            vector2IntArray[ index ] = ( Vector2Int ) array[ index ];
-
-        return vector2IntArray;
-    }
-
+   
 
     public static Vector3Int[] GenerateShapeVertexPoints ( ElementShape shape, Vector3Int centerPoint, Vector3Int dimensions ) {
         switch ( shape ) {

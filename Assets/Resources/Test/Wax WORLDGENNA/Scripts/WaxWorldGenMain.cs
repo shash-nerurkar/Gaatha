@@ -84,6 +84,8 @@ namespace WaxWorldGeneration
             Debug.Log ( "WAX FLOOR SIZE: " + floorSize );
 
             FloorVertexPoints = WorldGenHelper.GenerateShapeVertexPoints ( shape: floorShape, centerPoint: Vector3Int.zero, dimensions: floorSize );
+            foreach ( Vector3Int floorpoint in FloorVertexPoints )
+                print( floorpoint );
 
             int roomCount = Random.Range ( roomCountRange.x, roomCountRange.y );
             Debug.Log ( "WAX ROOM COUNT: " + roomCount );
@@ -107,7 +109,7 @@ namespace WaxWorldGeneration
         private bool GenerateRoom () {
             ElementShape roomShape = roomShapes[ Random.Range ( 0, roomShapes.Length ) ];
             Vector2Int roomSize = new Vector2Int ( Random.Range ( roomSizeRange.x, roomSizeRange.y ), Random.Range ( roomSizeRange.x, roomSizeRange.y ) );
-            Vector3 roomCoords = new Vector3 ( 0, 0, 0 ); // Random.Range ( minFloorSize.z, maxFloorSize.z ) );
+            Vector3 roomCoords = new Vector3 ( 0, 0, Random.Range ( minFloorSize.z, maxFloorSize.z ) );
 
             GameObject roomObj = Instantiate ( original: waxRoomPrefab, position: roomCoords, rotation: Quaternion.identity, parent: transform );
             WaxRoom waxRoomComponent = roomObj.AddComponent<WaxRoom> ();
@@ -173,9 +175,9 @@ namespace WaxWorldGeneration
             if ( shapeRenderer != null ) {
                 Vector3[] floorVertexCoords = new Vector3[ FloorVertexPoints.Length ];
                 for( int i = 0; i < FloorVertexPoints.Length; i++ )
-                    floorVertexCoords[i] = outputTilemap.CellToWorld( FloorVertexPoints[ i ] );
+                    floorVertexCoords[ i ] = outputTilemap.CellToWorld ( FloorVertexPoints[ i ] );
 
-                shapeRenderer.DrawPolygon( floorVertexCoords, Color.blue, 0.1f );
+                shapeRenderer.DrawPolygon ( floorVertexCoords, Color.blue, 0.1f );
             }
         }
     }
