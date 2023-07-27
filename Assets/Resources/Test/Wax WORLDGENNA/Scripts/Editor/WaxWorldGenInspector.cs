@@ -2,18 +2,24 @@
 
 using UnityEditor;
 using UnityEngine;
-using WaxWorldGeneration;
 
-[CustomEditor(typeof(WaxWorldGenMain))]
-public class WaxWorldGenInspector : Editor
+
+namespace WorldGeneration
 {
-    public override void OnInspectorGUI() {
-        DrawDefaultInspector();
-        
-        WaxWorldGenMain myScript = ( WaxWorldGenMain ) target;
-        
-        if(GUILayout.Button( "Generate floor" ) )
-            myScript.GenerateFloor();
+    namespace WaxWorldGeneration
+    {
+        [CustomEditor(typeof(WaxWorldGenMain) ) ]
+        public class WaxWorldGenInspector : Editor
+        {
+            public override void OnInspectorGUI ( ) {
+                DrawDefaultInspector ( );
+                
+                WaxWorldGenMain myScript = ( WaxWorldGenMain ) target;
+                
+                if(GUILayout.Button ( "Generate Floor" ) )
+                    myScript.GenerateFloor ( );
+            }
+        }
     }
 }
 
