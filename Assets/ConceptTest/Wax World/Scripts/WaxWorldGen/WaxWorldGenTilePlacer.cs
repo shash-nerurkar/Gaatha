@@ -10,6 +10,8 @@ namespace WorldGeneration
 {
     namespace WaxWorldGeneration
     {
+        #region Enumerators
+
         [ Serializable ] public enum WaxTileColors {
             Color1,
             Color2,
@@ -31,19 +33,30 @@ namespace WorldGeneration
             Right
         }
 
-
+        #endregion
+        
         public class WaxWorldGenTilePlacer : WorldGenTilePlacer
         {
+            #region Serialized Fields
+
             [ SerializeField ] private WaxTile [ ] defaultTiles;
 
             [ SerializeField ] private WaxTile [ ] topTiles;
             [ SerializeField ] private WaxTile [ ] bottomTiles;
             [ SerializeField ] private WaxTile [ ] middleTiles;
 
+            #endregion
+
+            
+            #region Fields
+
             private Tilemap outputTilemap;
             private Dictionary < Vector2Int, WaxTileColors > tileSelectedColors;
 
+            #endregion
 
+            
+            #region Methods
 
             public override void Init ( WorldGenFloor floor ) {
                 tileSelectedColors = new Dictionary < Vector2Int, WaxTileColors > ( );
@@ -87,8 +100,6 @@ namespace WorldGeneration
                 }
             }
             
-
-            
             public override void PlaceFloorGroundTiles ( Vector3Int [ ] points, Tilemap outputTilemap ) {
                 this.outputTilemap = outputTilemap;
 
@@ -110,8 +121,6 @@ namespace WorldGeneration
                 }
             }
 
-
-
             public override void PlaceRoomGroundTiles ( Vector3Int [ ] points, Tilemap outputTilemap ) {
                 this.outputTilemap = outputTilemap;
 
@@ -129,9 +138,7 @@ namespace WorldGeneration
                     outputTilemap.SetTile ( point, waxTile.Tile );
                 }
             }
-        
-
-            
+              
             public override void PlaceCorridorGroundTiles ( Vector3Int [ ] points, Tilemap outputTilemap ) {
                 this.outputTilemap = outputTilemap;
                 Debug.Log ( "points: " + Vector3IntHelper.ArrayToString ( points ) );
@@ -157,9 +164,7 @@ namespace WorldGeneration
                     outputTilemap.SetTile ( point, waxTile.Tile );
                 }
             }
-
-   
-        
+     
             private void SetGroundTile ( Vector3Int position ) {
                 WaxTileColors color = tileSelectedColors [ ( Vector2Int ) position ];
 
@@ -369,6 +374,8 @@ namespace WorldGeneration
             }
 
             private WaxTileColors GetRandomTileColor ( ) => ( WaxTileColors ) Random.Range ( 0, ( int ) WaxTileColors.Count );
+
+            #endregion
         }
     }
 }

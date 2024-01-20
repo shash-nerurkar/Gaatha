@@ -193,7 +193,7 @@ PrefabInstance:
       objectReference: {fileID: 1502568503}
     - target: {fileID: 1809926755268806920, guid: e9d65437bb045df40bd6e996def056f6, type: 3}
       propertyPath: m_Name
-      value: PROCEDURAL ANIM_ SAAPA
+      value: PROC ANIM_ SAAPA
       objectReference: {fileID: 0}
     - target: {fileID: 1809926755268806923, guid: e9d65437bb045df40bd6e996def056f6, type: 3}
       propertyPath: m_RootOrder
@@ -201,7 +201,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1809926755268806923, guid: e9d65437bb045df40bd6e996def056f6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.6
+      value: -18.19
       objectReference: {fileID: 0}
     - target: {fileID: 1809926755268806923, guid: e9d65437bb045df40bd6e996def056f6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -622,34 +622,6 @@ PrefabInstance:
     - target: {fileID: 1148107452707872959, guid: c0d9588d662c90a449e3bc47b2b10bec, type: 3}
       propertyPath: m_Name
       value: Wax WORLDGENNA
-      objectReference: {fileID: 0}
-    - target: {fileID: 1665651152526794949, guid: c0d9588d662c90a449e3bc47b2b10bec, type: 3}
-      propertyPath: roomPrefab
-      value: 
-      objectReference: {fileID: 9069885912269046791, guid: c0d12a8b0c35dbf4686bdf4892aeee58, type: 3}
-    - target: {fileID: 1665651152526794949, guid: c0d9588d662c90a449e3bc47b2b10bec, type: 3}
-      propertyPath: floorPrefab
-      value: 
-      objectReference: {fileID: 7736133209812700422, guid: 6a9ee12a70d43604b944a91275fec620, type: 3}
-    - target: {fileID: 1665651152526794949, guid: c0d9588d662c90a449e3bc47b2b10bec, type: 3}
-      propertyPath: corridorPrefab
-      value: 
-      objectReference: {fileID: 5622310788568767608, guid: 3b0d933968534c14a9604614d3fc7c38, type: 3}
-    - target: {fileID: 1665651152526794949, guid: c0d9588d662c90a449e3bc47b2b10bec, type: 3}
-      propertyPath: floorCountRange.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1665651152526794949, guid: c0d9588d662c90a449e3bc47b2b10bec, type: 3}
-      propertyPath: elevationMultiplier
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 1665651152526794949, guid: c0d9588d662c90a449e3bc47b2b10bec, type: 3}
-      propertyPath: floorWallHeightRange.x
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1665651152526794949, guid: c0d9588d662c90a449e3bc47b2b10bec, type: 3}
-      propertyPath: floorWallHeightRange.y
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4541077962763935946, guid: c0d9588d662c90a449e3bc47b2b10bec, type: 3}
       propertyPath: m_Color.a

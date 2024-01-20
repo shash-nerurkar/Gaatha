@@ -6,12 +6,23 @@ namespace WorldGeneration
 {
     public abstract class WorldGenTilePlacer : MonoBehaviour
     {
+        #region Serialized Fields
+        
         [ SerializeField ] private TileBase defaultTile;
+
+        #endregion
+
+
+        #region Fields
+
         public TileBase DefaultTile {
             get { return defaultTile; }
         }
 
+        #endregion
 
+
+        #region Methods
 
         public virtual void PlaceDimensionTiles ( Vector3Int position, Vector3Int dimensions, Tilemap outputTilemap ) {
             Vector3Int bottomLeft = position - dimensions / 2;
@@ -46,5 +57,7 @@ namespace WorldGeneration
         public abstract void PlaceCorridorGroundTiles ( Vector3Int [ ] points, Tilemap outputTilemap );
         
         public abstract void PlaceCorridorWallTiles ( Vector3Int [ ] points, Tilemap outputTilemap );
+
+        #endregion
     }
 }

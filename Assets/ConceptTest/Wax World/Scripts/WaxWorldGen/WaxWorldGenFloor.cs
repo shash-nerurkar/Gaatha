@@ -9,10 +9,20 @@ namespace WorldGeneration
     {
         public class WaxWorldGenFloor : WorldGenFloor
         {
+            #region Serialized Fields
+
             [ SerializeField ] private Vector2Int roomDistFromCenter =  new Vector2Int ( 10, 10 );
             [ SerializeField ] [ Range ( -20, 20 ) ] private int minDistBetweenRooms = -3;
 
+            #endregion
 
+            
+            #region Fields
+
+            #endregion
+
+
+            #region Methods
 
             protected override void GenerateWallPoints ( ) {
                 List < Vector2Int > unplacedGroundPoints = Vector3IntHelper.ToVector2IntList ( GroundPoints );
@@ -38,8 +48,6 @@ namespace WorldGeneration
                 TilePlacer.PlaceFloorWallTiles ( points: WallPoints.ToArray ( ), outputTilemap: OutputTilemap );
             }
 
-
-            
             protected override bool IsRoomValid ( WorldGenRoom room ) {
                 for ( int index = 0; index < Rooms.Count; index++ )
                     if ( !room.Equals ( Rooms [ index ] ) && WorldGenMain.GetDistanceBetweenRooms ( room, Rooms [ index ], subtractRoomRadii: true ) < minDistBetweenRooms )
@@ -55,10 +63,10 @@ namespace WorldGeneration
                 return Vector3IntHelper.Vector3IntLerp ( randomFloorVertexPoint, Position, tValue );
             }
 
-
-
             // SET START AND END POINTS 
             public override void SetFloorEndPoints ( ) { }
+
+            #endregion
         }
     }
 }

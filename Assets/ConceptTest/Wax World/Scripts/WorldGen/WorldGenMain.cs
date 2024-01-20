@@ -8,10 +8,12 @@ namespace WorldGeneration
 {
     public abstract class WorldGenMain : MonoBehaviour 
     {
+        #region Serialized Fields
+
         [ SerializeField ] private Tilemap mainTilemap;
         [ SerializeField ] private WorldGenTilePlacer tilePlacer;
 
-        [ Header ( "Prefabs" ) ]
+        [ Header ( "Enclosure Prefabs" ) ]
         [ SerializeField ] private GameObject floorPrefab;
         [ SerializeField ] private GameObject roomPrefab;
         [ SerializeField ] private GameObject corridorPrefab;
@@ -26,8 +28,17 @@ namespace WorldGeneration
         [ Header ( "Floor Elevation" ) ]
         [ SerializeField ] [ Range ( 20, 40 ) ] private int elevationMultiplier = 25;
 
+        #endregion
+
+
+        #region Fields
+
         public List < WorldGenFloor > Floors { get; private set; }
 
+        #endregion
+
+
+        #region Methods
 
         void Awake ( ) {
             Floors = new List< WorldGenFloor > ( );
@@ -51,8 +62,6 @@ namespace WorldGeneration
             }
             Floors.Clear ( );
         }
-
-
 
         public void GenerateMap ( ) {
             ClearMap ( );
@@ -98,12 +107,12 @@ namespace WorldGeneration
             return floor;
         }
 
-
-
         public static float GetDistanceBetweenRooms ( WorldGenRoom room1, WorldGenRoom room2, bool subtractRoomRadii = false ) {
             float roomRadii = room1.Radius + room2.Radius;
 
             return Vector3Int.Distance ( room1.Position, room2.Position ) - ( subtractRoomRadii ? roomRadii : 0 );
         }
+
+        #endregion
     }
 }

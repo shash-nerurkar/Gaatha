@@ -6,11 +6,21 @@ namespace WorldGeneration
 {
     public abstract class WorldGenRoom : WorldGenEnclosure
     {
+        #region Serialized Fields
+
         [ SerializeField ] [ Range ( 2, 20 ) ] private int maxCorridorWidth = 6;
+
+        #endregion
+
+
+        #region Fields
 
         public List < WorldGenCorridor > Corridors { get; private set; }
 
+        #endregion
 
+
+        #region Methods
 
         void Awake ( ) => Corridors = new List < WorldGenCorridor > ( );
 
@@ -19,8 +29,6 @@ namespace WorldGeneration
 
             TilePlacer.PlaceRoomWallTiles ( points: WallPoints.ToArray ( ), outputTilemap: OutputTilemap );
         }
-        
-        
         
         public void GenerateCorridors ( GameObject corridorPrefab, List < WorldGenRoom > rooms ) {
             foreach ( WorldGenRoom otherRoom in rooms )
@@ -53,8 +61,6 @@ namespace WorldGeneration
             return corridorComponent;
         }
 
-
-
         public WorldGenRoom GetClosestRoom ( List < WorldGenRoom > rooms ) {
             if ( rooms == null || rooms.Count < 1 )
                 throw new UnassignedReferenceException ( "Floor Rooms array is empty/null." );
@@ -73,5 +79,7 @@ namespace WorldGeneration
 
             return resultRoom;
         }
+
+        #endregion
     }
 }

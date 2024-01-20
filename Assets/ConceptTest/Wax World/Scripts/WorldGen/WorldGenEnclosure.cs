@@ -7,11 +7,17 @@ namespace WorldGeneration
 {
     public abstract class WorldGenEnclosure : MonoBehaviour
     {
+        #region Serialized Fields
+
+        #endregion
+
+
+        #region Fields
+
         public ShapeRenderer ShapeRenderer { get; private set; }
         public Tilemap OutputTilemap { get; private set; }
         public WorldGenTilePlacer TilePlacer { get; private set; }
         public Tilemap MainTilemap { get; private set; }
-
         
         public ElementShape Shape { get; private set; }
         public Vector3Int Position {
@@ -29,7 +35,10 @@ namespace WorldGeneration
         public List < Vector3Int > GroundPoints { get; set; }
         public List < Vector3Int > WallPoints { get; set; }
 
+        #endregion
 
+
+        #region Methods
 
         public void Init ( Tilemap mainTilemap, WorldGenTilePlacer tilePlacer, ElementShape shape, Vector3Int dimensions, int wallHeight ) {
             OutputTilemap = GetComponentInChildren < Tilemap > ( );
@@ -42,8 +51,6 @@ namespace WorldGeneration
 
             GeneratePoints ( coords: transform.position );
         }
-
-
 
         public void GeneratePoints ( Vector3 coords ) {
             transform.position = coords;
@@ -87,11 +94,7 @@ namespace WorldGeneration
             }
         }
 
-
-
         public abstract void Tile ( );
-
-
 
         private void DrawGizmo ( ) {
             ShapeRenderer = GetComponent < ShapeRenderer > ( );
@@ -106,5 +109,7 @@ namespace WorldGeneration
                 // ShapeRenderer.DrawCircle ( transform.position, RoomRadius * WorldGenHelper.GetTilemapCellRadius ( MainTilemap ), Color.blue, 0.1f );
             }
         }
+
+        #endregion
     }
 }

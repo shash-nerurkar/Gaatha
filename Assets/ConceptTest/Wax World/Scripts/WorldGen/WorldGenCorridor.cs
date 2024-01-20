@@ -5,8 +5,20 @@ namespace WorldGeneration
 {
     public abstract class WorldGenCorridor : WorldGenEnclosure
     {
+        #region Serialized Fields
+
+        #endregion
+
+
+        #region Fields
+
         public Vector3Int StartPoint { get; private set; }
         public Vector3Int EndPoint { get; private set; }
+
+        #endregion
+
+
+        #region Methods
 
         public void SetEndPoints ( Vector3Int startPoint, Vector3Int endPoint ) {
             StartPoint = startPoint;
@@ -24,5 +36,7 @@ namespace WorldGeneration
             
             TilePlacer.PlaceCorridorWallTiles ( points: WallPoints.ToArray ( ), outputTilemap: OutputTilemap );
         }
+
+        #endregion
     }
 }

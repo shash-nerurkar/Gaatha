@@ -133,15 +133,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainTilemap: {fileID: 4489546242350780684}
   tilePlacer: {fileID: 2018851009}
-  floorPrefab: {fileID: 8485245947841043286, guid: e8536dea0f36bd64a97f5088e2a3c92b, type: 3}
-  roomPrefab: {fileID: 8628108044005297070, guid: 959b3b8bad9f98f4b83f197c98108b56, type: 3}
-  corridorPrefab: {fileID: 8865014958456533648, guid: f01b2692eb9637b40a469d9c80b5b63f, type: 3}
+  floorPrefab: {fileID: 7736133209812700422, guid: 6a9ee12a70d43604b944a91275fec620, type: 3}
+  roomPrefab: {fileID: 9069885912269046791, guid: c0d12a8b0c35dbf4686bdf4892aeee58, type: 3}
+  corridorPrefab: {fileID: 5622310788568767608, guid: 3b0d933968534c14a9604614d3fc7c38, type: 3}
   floorCountRange: {x: 1, y: 1}
   floorShape: 3
   minFloorSize: {x: 100, y: 100}
   maxFloorSize: {x: 120, y: 120}
-  floorWallHeightRange: {x: 10, y: 20}
-  elevationMultiplier: 25
+  floorWallHeightRange: {x: 5, y: 8}
+  elevationMultiplier: 30
 --- !u!1 &7418172588422824142
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +305,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3435454957840708921, guid: 0b95bdd63c9a64648b59c024c09fa509, type: 3}
       propertyPath: m_Name
-      value: Procedural Grid
+      value: Grid
       objectReference: {fileID: 0}
     - target: {fileID: 5215149034244887460, guid: 0b95bdd63c9a64648b59c024c09fa509, type: 3}
       propertyPath: m_RootOrder

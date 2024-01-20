@@ -5,6 +5,8 @@ namespace WorldGeneration
 {
     public abstract class WorldGenFloor : WorldGenEnclosure
     {
+        #region Serialized Fields
+
         [ SerializeField ] private ElementShape [ ] roomShapes = new ElementShape [ ] { ElementShape.Circle };
         [ SerializeField ] private Vector2Int roomSizeRange = new ( 25, 30 );
         [ SerializeField ] private Vector2Int roomCountRange = new ( 10, 15 );
@@ -20,7 +22,15 @@ namespace WorldGeneration
         public List < WorldGenRoom > Rooms { get; private set; }
         public int RoomsWallHeight { get; private set; }
 
+        #endregion
 
+
+        #region Fields
+
+        #endregion
+
+        
+        #region Methods
 
         void Awake ( ) => Rooms = new List < WorldGenRoom > ( );
 
@@ -30,8 +40,6 @@ namespace WorldGeneration
 
             TilePlacer.PlaceFloorWallTiles ( points: WallPoints.ToArray ( ), outputTilemap: OutputTilemap );
         }
-
-
 
         public void GenerateRooms ( GameObject roomPrefab, GameObject corridorPrefab ) {
             int roomCount = Random.Range ( roomCountRange.x, roomCountRange.y );
@@ -72,8 +80,6 @@ namespace WorldGeneration
             return SetRoomCoords ( room );
         }
         
-
-
         private bool SetRoomCoords ( WorldGenRoom room ) {
             int maxIterations = roomSpawnIterations;
 
@@ -97,11 +103,11 @@ namespace WorldGeneration
         protected virtual Vector3Int GetRoomPosition ( WorldGenRoom room ) {
             return WorldGenHelper.GetRandomPointInsideShape ( vertices: VertexPoints, outputTilemap: MainTilemap );
         }
-
-
      
         public virtual void SetFloorEndPoints ( ) {
             
         }
+
+        #endregion
     }
 }
