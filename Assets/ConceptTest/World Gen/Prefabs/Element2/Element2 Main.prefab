@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6314766501954120093
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 115853294915839998, guid: c0d9588d662c90a449e3bc47b2b10bec, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 115853294915839998, guid: c0d9588d662c90a449e3bc47b2b10bec, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 115853294915839998, guid: c0d9588d662c90a449e3bc47b2b10bec, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 115853294915839998, guid: c0d9588d662c90a449e3bc47b2b10bec, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 115853294915839998, guid: c0d9588d662c90a449e3bc47b2b10bec, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 115853294915839998, guid: c0d9588d662c90a449e3bc47b2b10bec, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 115853294915839998, guid: c0d9588d662c90a449e3bc47b2b10bec, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 115853294915839998, guid: c0d9588d662c90a449e3bc47b2b10bec, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 115853294915839998, guid: c0d9588d662c90a449e3bc47b2b10bec, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 115853294915839998, guid: c0d9588d662c90a449e3bc47b2b10bec, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 115853294915839998, guid: c0d9588d662c90a449e3bc47b2b10bec, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148107452707872959, guid: c0d9588d662c90a449e3bc47b2b10bec, type: 3}
+      propertyPath: m_Name
+      value: Element2 Main
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c0d9588d662c90a449e3bc47b2b10bec, type: 3}
+--- !u!1 &6362578056177207586 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1148107452707872959, guid: c0d9588d662c90a449e3bc47b2b10bec, type: 3}
+  m_PrefabInstance: {fileID: 6314766501954120093}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-6187231320591683640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6362578056177207586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8347d1891c8e2499077ee65373a7a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultTile: {fileID: 0}
+--- !u!114 &5313812337474391620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6362578056177207586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c520bbc3d58185f4599f0004d6fb21ec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainTilemap: {fileID: 7632647166221154449}
+  tilePlacer: {fileID: -6187231320591683640}
+  floorPrefab: {fileID: 5273766849149570626, guid: 086ce1f8243fa26418bc07eb2fa3cd2d, type: 3}
+  roomPrefab: {fileID: 3750828880095164963, guid: 704eb319565e23a4d9960c95947bc447, type: 3}
+  corridorPrefab: {fileID: 5344714978124598875, guid: 829d93795fc664842862a6ada079321e, type: 3}
+  floorCountRange: {x: 10, y: 15}
+  floorShape: 0
+  minFloorSize: {x: 100, y: 100}
+  maxFloorSize: {x: 120, y: 120}
+  floorWallHeightRange: {x: 10, y: 20}
+  elevationMultiplier: 25
+--- !u!1839735485 &7632647166221154449 stripped
+Tilemap:
+  m_CorrespondingSourceObject: {fileID: 4489546242350780684, guid: c0d9588d662c90a449e3bc47b2b10bec, type: 3}
+  m_PrefabInstance: {fileID: 6314766501954120093}
+  m_PrefabAsset: {fileID: 0}
